@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video 2 — No Necesitas un CRM (15s)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    .phone-frame {
+      width: 1080px;
+      height: 1920px;
+      transform: scale(0.38);
+      transform-origin: center center;
+      background: #0a0c14;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(220, 15%, 20%, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(220, 15%, 20%, 0.12) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* CRM Title */
+    .crm-title {
+      position: absolute;
+      top: 280px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 140px;
+      font-weight: 700;
+      color: #e8e6e1;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: zoomIn 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .crm-title .shimmer {
+      background: linear-gradient(90deg, #e8e6e1 0%, #4d9de6 50%, #e8e6e1 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 1.5s 0.5s ease-in-out;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* CRM costs list */
+    .crm-costs {
+      position: absolute;
+      top: 480px;
+      left: 100px;
+      right: 100px;
+      list-style: none;
+    }
+
+    .crm-costs li {
+      font-family: 'Inter', sans-serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #8a8580;
+      padding: 18px 0;
+      border-bottom: 1px solid hsla(220, 15%, 20%, 0.3);
+      opacity: 0;
+      transform: translateX(-30px);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .crm-costs li:nth-child(1) { animation: slideRight 0.4s 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .crm-costs li:nth-child(2) { animation: slideRight 0.4s 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .crm-costs li:nth-child(3) { animation: slideRight 0.4s 2.0s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .crm-costs li:nth-child(4) { animation: slideRight 0.4s 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    .cost-icon {
+      color: #c0392b;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    /* Big X over everything */
+    .big-x {
+      position: absolute;
+      top: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .big-x .x-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 8px;
+      background: #c0392b;
+      border-radius: 4px;
+    }
+
+    .big-x .x-line-1 {
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: drawX 0.3s 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .big-x .x-line-2 {
+      transform: translate(-50%, -50%) rotate(-45deg);
+      animation: drawX 0.3s 3.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .big-x { animation: fadeIn 0.01s 3.2s forwards; }
+
+    @keyframes drawX {
+      to { width: 700px; }
+    }
+
+    /* Question */
+    .question {
+      position: absolute;
+      top: 50%;
+      left: 80px;
+      right: 80px;
+      transform: translateY(-50%);
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 68px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      line-height: 1.2;
+      opacity: 0;
+      animation: fadeIn 0.01s 4.2s forwards, slideUpFade 0.6s 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOut 0.4s 5.8s forwards;
+    }
+
+    /* 10% counter */
+    .counter-section {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.01s 6.2s forwards, impactScale 0.5s 6.2s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOut 0.5s 8s forwards;
+    }
+
+    .counter-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 220px;
+      font-weight: 700;
+      color: #c0392b;
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 36px;
+      color: #8a8580;
+      margin-top: 10px;
+      font-weight: 300;
+    }
+
+    /* Phase 1 (CRM + costs) fade out */
+    .phase-1 {
+      animation: fadeOut 0.4s 4s forwards;
+    }
+
+    /* Logo section */
+    .logo-section {
+      position: absolute;
+      top: 45%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      opacity: 0;
+      animation: logoIn 0.8s 8.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .logo-icon { margin: 0 auto 40px; }
+
+    .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 68px;
+      font-weight: 700;
+      color: #4d9de6;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .logo-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 36px;
+      color: #e8e6e1;
+      margin-top: 20px;
+      font-weight: 300;
+    }
+
+    /* Bottom features */
+    .features {
+      position: absolute;
+      bottom: 200px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0;
+    }
+
+    .feature {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .feature:nth-child(1) { animation: slideUpFade 0.5s 11s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .feature:nth-child(2) { animation: slideUpFade 0.5s 11.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .feature:nth-child(3) { animation: slideUpFade 0.5s 11.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    .features { animation: fadeIn 0.01s 11s forwards; }
+
+    .feature-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #52b788;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      color: #8a8580;
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    /* Keyframes */
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    @keyframes slideUpFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes impactScale {
+      from { opacity: 0; transform: translateY(-50%) scale(0.5); }
+      to { opacity: 1; transform: translateY(-50%) scale(1); }
+    }
+
+    @keyframes logoIn {
+      from { opacity: 0; transform: translateY(-50%) scale(0.9); }
+      to { opacity: 1; transform: translateY(-50%) scale(1); }
+    }
+
+    /* Play overlay */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 20, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .play-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #4d9de6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn svg { margin-left: 8px; }
+
+    .play-label {
+      font-family: 'Oswald', sans-serif;
+      color: #e8e6e1;
+      font-size: 28px;
+      margin-top: 24px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .phone-frame.paused * {
+      animation-play-state: paused !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="phone-frame paused" id="video">
+
+  <!-- Phase 1: CRM title + costs -->
+  <div class="phase-1">
+    <div class="crm-title"><span class="shimmer">CRM</span></div>
+    <ul class="crm-costs">
+      <li><span class="cost-icon">$</span> USD $50/mes por usuario</li>
+      <li><span class="cost-icon">📚</span> Capacitación obligatoria</li>
+      <li><span class="cost-icon">📋</span> Licencia anual</li>
+      <li><span class="cost-icon">🔧</span> 20 módulos que no usas</li>
+    </ul>
+    <div class="big-x">
+      <div class="x-line x-line-1"></div>
+      <div class="x-line x-line-2"></div>
+    </div>
+  </div>
+
+  <!-- Phase 2: Question -->
+  <div class="question">¿Y cuánto<br>realmente<br>usas?</div>
+
+  <!-- Phase 3: 10% -->
+  <div class="counter-section">
+    <div class="counter-number" id="counter">10%</div>
+    <div class="counter-label">de todo lo que pagas</div>
+  </div>
+
+  <!-- Phase 4: Logo + solution -->
+  <div class="logo-section">
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="90" height="90">
+      <rect x="8" y="8" width="64" height="64" rx="12" stroke="#4d9de6" stroke-width="3.5" fill="none"/>
+      <path d="M24 52V36" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 52V28" stroke="#52b788" stroke-width="5" stroke-linecap="round"/>
+      <path d="M56 52V20" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Standard<br>Sales Manager</div>
+    <div class="logo-tagline">Solo lo que necesitas</div>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-text">Sin licencia</div>
+      <div class="feature-sub">Pago único</div>
+    </div>
+    <div class="feature">
+      <div class="feature-text">Sin capacitación</div>
+      <div class="feature-sub">Úsalo hoy</div>
+    </div>
+    <div class="feature">
+      <div class="feature-text">Sin excusas</div>
+      <div class="feature-sub">Empieza ya</div>
+    </div>
+  </div>
+
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-btn">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="play-label">Reproducir · 15s</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    const video = document.getElementById('video');
+    this.classList.add('hidden');
+    video.classList.remove('paused');
+    const clone = video.cloneNode(true);
+    clone.classList.remove('paused');
+    clone.querySelector('.play-overlay').classList.add('hidden');
+    video.parentNode.replaceChild(clone, video);
+  });
+</script>
+
+</body>
+</html>

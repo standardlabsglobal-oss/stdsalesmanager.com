@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video 4 — CRM vs SSM (30s)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    .phone-frame {
+      width: 1080px;
+      height: 1920px;
+      transform: scale(0.38);
+      transform-origin: center center;
+      background: #0a0c14;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(220, 15%, 20%, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(220, 15%, 20%, 0.12) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Phase 1: Question */
+    .question {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      padding: 0 80px;
+      opacity: 0;
+      animation: fadeInScale 0.6s 0.3s forwards, fadeOut 0.5s 2.8s forwards;
+    }
+
+    .question h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 72px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .question .accent { color: #4d9de6; }
+
+    /* Phase 2: Split comparison */
+    .split {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      opacity: 0;
+      animation: fadeIn 0.01s 3.5s forwards;
+    }
+
+    .split-left, .split-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 40px;
+    }
+
+    .split-left {
+      background: hsla(0, 65%, 50%, 0.04);
+      border-right: 1px solid hsla(220, 15%, 20%, 0.3);
+    }
+
+    .split-right {
+      background: hsla(210, 80%, 55%, 0.04);
+    }
+
+    .split-header {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideDown 0.5s 3.8s forwards;
+    }
+
+    .split-left .split-header {
+      color: #c0392b;
+      border-bottom-color: hsla(0, 65%, 50%, 0.3);
+    }
+
+    .split-right .split-header {
+      color: #4d9de6;
+      border-bottom-color: hsla(210, 80%, 55%, 0.3);
+    }
+
+    /* Comparison rows */
+    .compare-row {
+      padding: 28px 0;
+      border-bottom: 1px solid hsla(220, 15%, 20%, 0.15);
+      opacity: 0;
+    }
+
+    .compare-label {
+      font-size: 24px;
+      color: #8a8580;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .compare-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .split-left .compare-value { color: #e8e6e1; }
+    .split-right .compare-value { color: #52b788; }
+
+    /* Row animations */
+    .split-left .compare-row:nth-child(2) { animation: fadeInLeft 0.4s 5s forwards; }
+    .split-right .compare-row:nth-child(2) { animation: fadeInRight 0.4s 5.2s forwards; }
+    .split-left .compare-row:nth-child(3) { animation: fadeInLeft 0.4s 7s forwards; }
+    .split-right .compare-row:nth-child(3) { animation: fadeInRight 0.4s 7.2s forwards; }
+    .split-left .compare-row:nth-child(4) { animation: fadeInLeft 0.4s 9s forwards; }
+    .split-right .compare-row:nth-child(4) { animation: fadeInRight 0.4s 9.2s forwards; }
+    .split-left .compare-row:nth-child(5) { animation: fadeInLeft 0.4s 11s forwards; }
+    .split-right .compare-row:nth-child(5) { animation: fadeInRight 0.4s 11.2s forwards; }
+
+    /* Left side fades out, right expands */
+    .split { animation: fadeIn 0.01s 3.5s forwards, fadeOut 0.5s 14s forwards; }
+
+    /* Winner section */
+    .winner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      opacity: 0;
+      animation: fadeIn 0.01s 14.8s forwards, fadeInScale 0.8s 14.8s forwards;
+    }
+
+    .winner-badge {
+      background: hsla(160, 60%, 45%, 0.12);
+      border: 1px solid hsla(160, 60%, 45%, 0.3);
+      border-radius: 100px;
+      padding: 12px 36px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: #52b788;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: fadeInUp 0.5s 15.5s forwards;
+    }
+
+    .winner .logo-icon { margin-bottom: 40px; }
+
+    .winner .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 68px;
+      font-weight: 700;
+      color: #4d9de6;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      letter-spacing: 0.06em;
+    }
+
+    .winner-desc {
+      font-size: 36px;
+      color: #e8e6e1;
+      margin-top: 30px;
+      font-weight: 300;
+      text-align: center;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeInUp 0.5s 16.5s forwards;
+    }
+
+    .winner .tagline {
+      font-family: 'Oswald', sans-serif;
+      font-size: 44px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 50px;
+      opacity: 0;
+      animation: fadeInUp 0.6s 18s forwards;
+    }
+
+    .winner .dot { color: #4d9de6; margin: 0 8px; }
+
+    .winner .cta-btn {
+      margin-top: 40px;
+      background: #4d9de6;
+      color: #0a0c14;
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 28px 70px;
+      border-radius: 14px;
+      opacity: 0;
+      animation: fadeInUp 0.6s 19s forwards;
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; } }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(-50%) scale(0.9); }
+      to { opacity: 1; transform: translateY(-50%) scale(1); }
+    }
+    @keyframes slideDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Play overlay */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 20, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+    .play-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #4d9de6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-btn svg { margin-left: 8px; }
+    .play-label {
+      font-family: 'Oswald', sans-serif;
+      color: #e8e6e1;
+      font-size: 28px;
+      margin-top: 24px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .phone-frame.paused * { animation-play-state: paused !important; }
+  </style>
+</head>
+<body>
+
+<div class="phone-frame paused" id="video">
+
+  <!-- Phase 1: Question -->
+  <div class="question">
+    <h2>¿Tu negocio<br>necesita un<br><span class="accent">CRM</span>?</h2>
+  </div>
+
+  <!-- Phase 2: Split comparison -->
+  <div class="split">
+    <div class="split-left">
+      <div class="split-header">CRM</div>
+      <div class="compare-row">
+        <div class="compare-label">Costo</div>
+        <div class="compare-value">$600 USD/año</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Aprendizaje</div>
+        <div class="compare-value">Capacitación obligatoria</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Funciones</div>
+        <div class="compare-value">20 módulos<br>que no usas</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Usuarios</div>
+        <div class="compare-value">Pago por<br>cada usuario</div>
+      </div>
+    </div>
+    <div class="split-right">
+      <div class="split-header">SSM</div>
+      <div class="compare-row">
+        <div class="compare-label">Costo</div>
+        <div class="compare-value">Pago único</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Aprendizaje</div>
+        <div class="compare-value">Úsalo desde el día 1</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Funciones</div>
+        <div class="compare-value">Solo lo<br>esencial</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Usuarios</div>
+        <div class="compare-value">Multiusuario<br>incluido</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Winner -->
+  <div class="winner">
+    <div class="winner-badge">La elección inteligente</div>
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="90" height="90">
+      <rect x="8" y="8" width="64" height="64" rx="12" stroke="#4d9de6" stroke-width="3.5" fill="none"/>
+      <path d="M24 52V36" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 52V28" stroke="#52b788" stroke-width="5" stroke-linecap="round"/>
+      <path d="M56 52V20" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Standard<br>Sales Manager</div>
+    <div class="winner-desc">Tus ventas, claras y simples</div>
+    <div class="tagline">Cotiza<span class="dot">·</span>Controla<span class="dot">·</span>Convierte</div>
+    <div class="cta-btn">Solicita tu demo</div>
+  </div>
+
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-btn">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="play-label">Reproducir · 30s</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    const video = document.getElementById('video');
+    this.classList.add('hidden');
+    video.classList.remove('paused');
+    const clone = video.cloneNode(true);
+    clone.classList.remove('paused');
+    clone.querySelector('.play-overlay').classList.add('hidden');
+    video.parentNode.replaceChild(clone, video);
+  });
+</script>
+
+</body>
+</html>

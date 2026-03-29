@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video 1 — El Problema (15s)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .frame {
+      width: 1080px;
+      height: 1920px;
+      transform: scale(0.38);
+      transform-origin: center center;
+      background: #05070f;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* === AMBIENT PARTICLES === */
+    .particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #4d9de6;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .p1 { top: 15%; left: 10%; animation: particleFloat 4s 0.5s infinite; }
+    .p2 { top: 30%; left: 85%; animation: particleFloat 3.5s 1s infinite; }
+    .p3 { top: 55%; left: 20%; animation: particleFloat 4.2s 0.3s infinite; }
+    .p4 { top: 70%; left: 75%; animation: particleFloat 3.8s 1.5s infinite; }
+    .p5 { top: 85%; left: 45%; animation: particleFloat 4s 0.8s infinite; }
+    .p6 { top: 25%; left: 55%; animation: particleFloat 3.6s 2s infinite; }
+    .p7 { top: 45%; left: 90%; animation: particleFloat 4.5s 0.2s infinite; }
+    .p8 { top: 60%; left: 5%; animation: particleFloat 3.3s 1.2s infinite; }
+
+    @keyframes particleFloat {
+      0% { opacity: 0; transform: translateY(0) scale(1); }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-80px) scale(0); }
+    }
+
+    /* === GRADIENT BLOBS === */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0;
+    }
+
+    .blob-1 {
+      width: 500px;
+      height: 500px;
+      background: hsla(210, 100%, 50%, 0.15);
+      top: -100px;
+      right: -100px;
+      animation: blobPulse 6s 0s infinite, fadeIn 1s 0.2s forwards;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: hsla(160, 80%, 45%, 0.1);
+      bottom: -50px;
+      left: -100px;
+      animation: blobPulse 5s 1s infinite, fadeIn 1s 0.5s forwards;
+    }
+
+    .blob-3 {
+      width: 300px;
+      height: 300px;
+      background: hsla(270, 80%, 50%, 0.08);
+      top: 40%;
+      left: 50%;
+      animation: blobPulse 7s 2s infinite, fadeIn 1s 1s forwards;
+    }
+
+    @keyframes blobPulse {
+      0%, 100% { transform: scale(1) translate(0, 0); }
+      33% { transform: scale(1.2) translate(30px, -20px); }
+      66% { transform: scale(0.9) translate(-20px, 30px); }
+    }
+
+    /* === HOOK — SECOND 0: Big visual impact === */
+    .hook {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: flashIn 0.15s 0.05s forwards, fadeOut 0.4s 1.8s forwards;
+    }
+
+    .hook-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 130px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1;
+      color: transparent;
+      background: linear-gradient(135deg, #4d9de6, #52b788, #4d9de6);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 2s ease infinite, glitchShake 0.1s 0.2s linear 5;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes glitchShake {
+      0% { transform: translate(0); }
+      25% { transform: translate(-5px, 3px); }
+      50% { transform: translate(5px, -3px); }
+      75% { transform: translate(-3px, -5px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes flashIn {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    /* Glitch lines */
+    .glitch-line {
+      position: absolute;
+      height: 4px;
+      background: #4d9de6;
+      z-index: 11;
+      opacity: 0;
+    }
+
+    .gl-1 { top: 30%; left: 0; width: 100%; animation: glitchLine 0.1s 0.1s linear 3; }
+    .gl-2 { top: 55%; left: 0; width: 60%; animation: glitchLine 0.1s 0.25s linear 2; }
+    .gl-3 { top: 75%; left: 30%; width: 70%; animation: glitchLine 0.1s 0.4s linear 2; }
+
+    @keyframes glitchLine {
+      0% { opacity: 0.8; transform: translateX(-10px); }
+      50% { opacity: 0.4; transform: translateX(10px); }
+      100% { opacity: 0; transform: translateX(0); }
+    }
+
+    /* === BADGE: "PARA VENDEDORES" === */
+    .badge-vendedores {
+      position: absolute;
+      top: 200px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      background: hsla(210, 80%, 55%, 0.12);
+      border: 1px solid hsla(210, 80%, 55%, 0.3);
+      border-radius: 100px;
+      padding: 14px 40px;
+      opacity: 0;
+      animation: badgeIn 0.5s 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .badge-vendedores span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: #4d9de6;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    @keyframes badgeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-15px) scale(0.8); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    }
+
+    /* === QUESTION CARDS === */
+    .q-card {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      z-index: 20;
+      background: hsla(220, 30%, 10%, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid hsla(210, 80%, 55%, 0.15);
+      border-radius: 20px;
+      padding: 40px 44px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+
+    .q-card .q-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: hsla(210, 80%, 55%, 0.15);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .q-card .q-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 50px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .q-card .q-text .highlight {
+      color: transparent;
+      background: linear-gradient(90deg, #4d9de6, #52b788);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .q1 { top: 320px; animation: cardIn 0.5s 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardOut 0.3s 4.2s forwards; }
+    .q2 { top: 320px; animation: cardIn 0.5s 4.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardOut 0.3s 6.2s forwards; }
+    .q3 { top: 320px; animation: cardIn 0.5s 6.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardOut 0.3s 8.2s forwards; }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes cardOut {
+      to { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    }
+
+    /* === PROGRESS BAR (top) === */
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #4d9de6, #52b788);
+      z-index: 50;
+      width: 0%;
+      animation: progressBar 15s 0s linear forwards;
+    }
+
+    @keyframes progressBar {
+      to { width: 100%; }
+    }
+
+    /* === IMPACT: "NO SABES" === */
+    .impact-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      background: #05070f;
+      opacity: 0;
+      animation: fadeIn 0.01s 8.5s forwards;
+    }
+
+    .impact {
+      position: absolute;
+      inset: 0;
+      z-index: 31;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 0.01s 8.5s forwards;
+    }
+
+    .impact-flash {
+      position: absolute;
+      inset: 0;
+      background: white;
+      z-index: 32;
+      opacity: 0;
+      animation: impactFlash 0.2s 8.5s forwards;
+    }
+
+    @keyframes impactFlash {
+      0% { opacity: 0; }
+      30% { opacity: 0.3; }
+      100% { opacity: 0; }
+    }
+
+    .impact-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 160px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 0.95;
+      color: transparent;
+      background: linear-gradient(135deg, #ff4444, #ff6b6b, #ff4444);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 1.5s ease infinite;
+      opacity: 0;
+      transform: scale(3);
+      animation: impactZoom 0.4s 8.7s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 1.5s ease infinite;
+    }
+
+    @keyframes impactZoom {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .impact-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 34px;
+      color: #8a8580;
+      margin-top: 20px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeInUp 0.4s 9.3s forwards;
+    }
+
+    /* Impact fades out */
+    .impact-bg { animation: fadeIn 0.01s 8.5s forwards, fadeOut 0.5s 10s forwards; }
+    .impact { animation: fadeIn 0.01s 8.5s forwards, fadeOut 0.5s 10s forwards; }
+
+    /* === LOGO REVEAL === */
+    .reveal {
+      position: absolute;
+      inset: 0;
+      z-index: 35;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 0.8s 10.5s forwards;
+    }
+
+    .reveal-logo {
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+      animation: logoReveal 0.6s 10.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes logoReveal {
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    .reveal-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 72px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.05;
+      color: transparent;
+      background: linear-gradient(135deg, #4d9de6, #52b788);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeInUp 0.5s 11.2s forwards;
+    }
+
+    .reveal-for {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeInUp 0.4s 11.6s forwards;
+    }
+
+    .reveal-for em {
+      font-style: normal;
+      color: #52b788;
+    }
+
+    /* Tagline */
+    .reveal-tagline {
+      display: flex;
+      gap: 20px;
+      margin-top: 50px;
+      opacity: 0;
+      animation: fadeInUp 0.5s 12.2s forwards;
+    }
+
+    .tag-item {
+      background: hsla(210, 80%, 55%, 0.1);
+      border: 1px solid hsla(210, 80%, 55%, 0.2);
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #4d9de6;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* CTA */
+    .reveal-cta {
+      margin-top: 40px;
+      background: linear-gradient(135deg, #4d9de6, #3a7bd5);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 22px 56px;
+      border-radius: 14px;
+      opacity: 0;
+      animation: ctaPulseIn 0.5s 12.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      box-shadow: 0 0 40px hsla(210, 80%, 55%, 0.3);
+    }
+
+    @keyframes ctaPulseIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .reveal-demo {
+      font-size: 24px;
+      color: #8a8580;
+      margin-top: 14px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeIn 0.4s 13.3s forwards;
+    }
+
+    /* === SHARED KEYFRAMES === */
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === PLAY OVERLAY === */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 7, 15, 0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 200;
+      transition: opacity 0.3s;
+    }
+
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .play-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid hsla(210, 80%, 55%, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: playPulse 2s ease infinite;
+    }
+
+    @keyframes playPulse {
+      0%, 100% { box-shadow: 0 0 0 0 hsla(210, 80%, 55%, 0.2); }
+      50% { box-shadow: 0 0 0 20px hsla(210, 80%, 55%, 0); }
+    }
+
+    .play-btn {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4d9de6, #3a7bd5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px hsla(210, 80%, 55%, 0.3);
+    }
+
+    .play-btn svg { margin-left: 6px; }
+
+    .play-label {
+      font-family: 'Oswald', sans-serif;
+      color: #e8e6e1;
+      font-size: 28px;
+      margin-top: 24px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .play-sublabel {
+      font-family: 'Inter', sans-serif;
+      color: #8a8580;
+      font-size: 18px;
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    .frame.paused .particles,
+    .frame.paused .blob,
+    .frame.paused .hook,
+    .frame.paused .glitch-line,
+    .frame.paused .badge-vendedores,
+    .frame.paused .q-card,
+    .frame.paused .progress,
+    .frame.paused .impact-bg,
+    .frame.paused .impact,
+    .frame.paused .impact-flash,
+    .frame.paused .reveal {
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div class="frame paused" id="video">
+
+  <!-- Ambient -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="particles">
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+    <div class="particle p8"></div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress"></div>
+
+  <!-- Glitch lines -->
+  <div class="glitch-line gl-1"></div>
+  <div class="glitch-line gl-2"></div>
+  <div class="glitch-line gl-3"></div>
+
+  <!-- 0s: HOOK — instant visual grab -->
+  <div class="hook">
+    <div class="hook-text">¿VENDES<br>Y NO<br>CONTROLAS?</div>
+  </div>
+
+  <!-- 2.2s: Badge -->
+  <div class="badge-vendedores">
+    <span>Para vendedores y equipos comerciales</span>
+  </div>
+
+  <!-- 2.5s: Question cards -->
+  <div class="q-card q1">
+    <div class="q-number">01</div>
+    <div class="q-text">¿Cuánto cotizaste<br><span class="highlight">este mes</span>?</div>
+  </div>
+
+  <div class="q-card q2">
+    <div class="q-number">02</div>
+    <div class="q-text">¿Cuántas se convirtieron<br>en <span class="highlight">venta</span>?</div>
+  </div>
+
+  <div class="q-card q3">
+    <div class="q-number">03</div>
+    <div class="q-text">¿A cuántas les hiciste<br><span class="highlight">seguimiento</span>?</div>
+  </div>
+
+  <!-- 8.5s: IMPACT -->
+  <div class="impact-flash"></div>
+  <div class="impact-bg"></div>
+  <div class="impact">
+    <div class="impact-text">No<br>sabes.</div>
+    <div class="impact-sub">Y estás perdiendo ventas por eso.</div>
+  </div>
+
+  <!-- 10.5s: LOGO REVEAL -->
+  <div class="reveal">
+    <svg class="reveal-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="110" height="110">
+      <rect x="8" y="8" width="64" height="64" rx="12" stroke="url(#logoGrad)" stroke-width="3.5" fill="none"/>
+      <path d="M24 52V36" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 52V28" stroke="#52b788" stroke-width="5" stroke-linecap="round"/>
+      <path d="M56 52V20" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="80" y2="80">
+          <stop offset="0%" stop-color="#4d9de6"/>
+          <stop offset="100%" stop-color="#52b788"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="reveal-name">Standard<br>Sales Manager</div>
+    <div class="reveal-for">Hecho para <em>vendedores</em></div>
+    <div class="reveal-tagline">
+      <div class="tag-item">Cotiza</div>
+      <div class="tag-item">Controla</div>
+      <div class="tag-item">Convierte</div>
+    </div>
+    <div class="reveal-cta">Demo gratis 30 días</div>
+    <div class="reveal-demo">Sin tarjeta · Sin compromiso</div>
+  </div>
+
+  <!-- Play overlay -->
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-ring">
+      <div class="play-btn">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+    </div>
+    <div class="play-label">Reproducir</div>
+    <div class="play-sublabel">Video 1 · El Problema · 15s</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    const video = document.getElementById('video');
+    this.classList.add('hidden');
+    video.classList.remove('paused');
+    // Re-trigger animations
+    const clone = video.cloneNode(true);
+    clone.classList.remove('paused');
+    clone.querySelector('.play-overlay').classList.add('hidden');
+    // Make elements visible
+    clone.querySelectorAll('.particles, .blob, .hook, .glitch-line, .badge-vendedores, .q-card, .progress, .impact-bg, .impact, .impact-flash, .reveal').forEach(el => {
+      el.style.visibility = 'visible';
+    });
+    video.parentNode.replaceChild(clone, video);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video 3 — La Realidad del Emprendedor (30s)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    .phone-frame {
+      width: 1080px;
+      height: 1920px;
+      transform: scale(0.38);
+      transform-origin: center center;
+      background: #0a0c14;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(220, 15%, 20%, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(220, 15%, 20%, 0.12) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .glow {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, hsla(210, 80%, 55%, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Scenes */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      text-align: center;
+      opacity: 0;
+    }
+
+    /* Scene 1: Searching through papers */
+    .scene-1 {
+      animation: sceneIn 0.6s 0.3s forwards, sceneOut 0.5s 4.5s forwards;
+    }
+
+    .scene-1 .scene-emoji {
+      font-size: 140px;
+      margin-bottom: 50px;
+      animation: shake 0.5s 1s ease-in-out 3;
+    }
+
+    .scene-1 .scene-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .scene-1 .scene-sub {
+      font-size: 34px;
+      color: #8a8580;
+      margin-top: 20px;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* Scene 2: Forgot who I quoted */
+    .scene-2 {
+      animation: sceneIn 0.6s 5.3s forwards, sceneOut 0.5s 9.5s forwards;
+    }
+
+    .scene-2 .scene-emoji {
+      font-size: 140px;
+      margin-bottom: 50px;
+    }
+
+    .scene-2 .scene-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .scene-2 .scene-sub {
+      font-size: 34px;
+      color: #8a8580;
+      margin-top: 20px;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* Scene 3: Client calls, no answer */
+    .scene-3 {
+      animation: sceneIn 0.6s 10.3s forwards, sceneOut 0.5s 13.5s forwards;
+    }
+
+    .scene-3 .scene-emoji {
+      font-size: 140px;
+      margin-bottom: 50px;
+      animation: ring 0.3s 11s ease-in-out 5;
+    }
+
+    .scene-3 .scene-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      color: #c0392b;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .scene-3 .scene-sub {
+      font-size: 34px;
+      color: #8a8580;
+      margin-top: 20px;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* Impact: "Esto no es profesional" */
+    .impact {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0c14;
+      opacity: 0;
+      animation: sceneIn 0.01s 14.2s forwards, sceneOut 0.5s 16.5s forwards;
+    }
+
+    .impact-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: #c0392b;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: impactIn 0.5s 14.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Flash */
+    .flash {
+      position: absolute;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+      animation: flashEffect 0.3s 14.1s forwards;
+    }
+
+    /* Solution section */
+    .solution {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      opacity: 0;
+      animation: sceneIn 0.8s 17s forwards;
+    }
+
+    .solution .logo-icon { margin-bottom: 40px; }
+
+    .solution .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: #4d9de6;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 50px;
+    }
+
+    /* Feature cards */
+    .feature-cards {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: hsla(210, 80%, 55%, 0.08);
+      border: 1px solid hsla(210, 80%, 55%, 0.2);
+      border-radius: 16px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    .feature-card:nth-child(1) { animation: slideRight 0.5s 18s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .feature-card:nth-child(2) { animation: slideRight 0.5s 18.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .feature-card:nth-child(3) { animation: slideRight 0.5s 19s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    .feature-card-icon {
+      font-size: 44px;
+      flex-shrink: 0;
+    }
+
+    .feature-card-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+    }
+
+    .feature-card-sub {
+      font-size: 26px;
+      color: #8a8580;
+      font-weight: 300;
+      margin-top: 4px;
+    }
+
+    /* Solution fades to final */
+    .solution { animation: sceneIn 0.8s 17s forwards, sceneOut 0.5s 22s forwards; }
+
+    /* Final CTA */
+    .final {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      opacity: 0;
+      animation: sceneIn 0.8s 22.5s forwards;
+    }
+
+    .final .logo-icon { margin-bottom: 40px; }
+
+    .final .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 68px;
+      font-weight: 700;
+      color: #4d9de6;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      letter-spacing: 0.06em;
+    }
+
+    .final .tagline {
+      font-family: 'Oswald', sans-serif;
+      font-size: 44px;
+      font-weight: 600;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInUp 0.6s 24s forwards;
+    }
+
+    .final .tagline .dot {
+      color: #4d9de6;
+      margin: 0 8px;
+    }
+
+    .final .cta-btn {
+      margin-top: 50px;
+      background: #4d9de6;
+      color: #0a0c14;
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 28px 70px;
+      border-radius: 14px;
+      opacity: 0;
+      animation: fadeInUp 0.6s 25s forwards;
+    }
+
+    .final .subtitle {
+      font-size: 28px;
+      color: #8a8580;
+      margin-top: 20px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeInUp 0.6s 25.5s forwards;
+    }
+
+    /* Keyframes */
+    @keyframes sceneIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes sceneOut {
+      to { opacity: 0; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-15px); }
+      75% { transform: translateX(15px); }
+    }
+
+    @keyframes ring {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      75% { transform: rotate(-15deg); }
+    }
+
+    @keyframes impactIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes flashEffect {
+      0% { opacity: 0; }
+      30% { opacity: 0.2; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes slideRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Play overlay */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 20, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .play-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #4d9de6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn svg { margin-left: 8px; }
+
+    .play-label {
+      font-family: 'Oswald', sans-serif;
+      color: #e8e6e1;
+      font-size: 28px;
+      margin-top: 24px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .phone-frame.paused * {
+      animation-play-state: paused !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="phone-frame paused" id="video">
+  <div class="glow"></div>
+
+  <!-- Scene 1: Searching -->
+  <div class="scene scene-1">
+    <div class="scene-emoji">📄🔍</div>
+    <div class="scene-text">Otra vez buscando<br>esa cotización...</div>
+    <div class="scene-sub">"¿Dónde la guardé?"</div>
+  </div>
+
+  <!-- Scene 2: Forgot -->
+  <div class="scene scene-2">
+    <div class="scene-emoji">🤔</div>
+    <div class="scene-text">¿A quién le coticé<br>la semana pasada?</div>
+    <div class="scene-sub">"No me acuerdo..."</div>
+  </div>
+
+  <!-- Scene 3: Client calls -->
+  <div class="scene scene-3">
+    <div class="scene-emoji">📞</div>
+    <div class="scene-text">El cliente pregunta...<br>y no tienes respuesta</div>
+    <div class="scene-sub">"Ehh... déjame buscar"</div>
+  </div>
+
+  <div class="flash"></div>
+
+  <!-- Impact -->
+  <div class="impact">
+    <div class="impact-text">Esto no es<br>profesional.</div>
+  </div>
+
+  <!-- Solution -->
+  <div class="solution">
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+      <rect x="8" y="8" width="64" height="64" rx="12" stroke="#4d9de6" stroke-width="3.5" fill="none"/>
+      <path d="M24 52V36" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 52V28" stroke="#52b788" stroke-width="5" stroke-linecap="round"/>
+      <path d="M56 52V20" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Standard<br>Sales Manager</div>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="feature-card-icon">⚡</div>
+        <div>
+          <div class="feature-card-text">30 segundos</div>
+          <div class="feature-card-sub">Cotización lista</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">📊</div>
+        <div>
+          <div class="feature-card-text">Métricas reales</div>
+          <div class="feature-card-sub">Sin complicaciones</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🔔</div>
+        <div>
+          <div class="feature-card-text">Alertas</div>
+          <div class="feature-card-sub">Nunca más olvidas un seguimiento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="final">
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="90" height="90">
+      <rect x="8" y="8" width="64" height="64" rx="12" stroke="#4d9de6" stroke-width="3.5" fill="none"/>
+      <path d="M24 52V36" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 52V28" stroke="#52b788" stroke-width="5" stroke-linecap="round"/>
+      <path d="M56 52V20" stroke="#4d9de6" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Standard<br>Sales Manager</div>
+    <div class="tagline">Cotiza<span class="dot">·</span>Controla<span class="dot">·</span>Convierte</div>
+    <div class="cta-btn">Pruébalo gratis</div>
+    <div class="subtitle">Sin compromiso · Sin tarjeta</div>
+  </div>
+
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-btn">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="play-label">Reproducir · 30s</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    const video = document.getElementById('video');
+    this.classList.add('hidden');
+    video.classList.remove('paused');
+    const clone = video.cloneNode(true);
+    clone.classList.remove('paused');
+    clone.querySelector('.play-overlay').classList.add('hidden');
+    video.parentNode.replaceChild(clone, video);
+  });
+</script>
+
+</body>
+</html>

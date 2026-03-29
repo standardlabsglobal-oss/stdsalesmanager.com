@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard Sales Manager — Software Profesional de Cotizaciones</title>
+  <meta name="description" content="Crea cotizaciones profesionales en menos de 1 minuto. Controla conversiones. Gestiona tu equipo comercial. Software B2B para PYMEs. Prueba gratis 20 dias.">
+  <meta name="keywords" content="quotation software, sales management, PDF quotes, B2B, SME, PYME, cotizaciones, gestion comercial">
+  <meta property="og:title" content="Standard Sales Manager — Professional Quotation Software">
+  <meta property="og:description" content="Create professional quotes in 30 seconds. Track conversions. Manage your sales team. Free trial.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stdsalesmanager.com">
+  <meta property="og:image" content="https://stdsalesmanager.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://stdsalesmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Standard Sales Manager",
+    "operatingSystem": "Windows, Android",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "5",
+      "highPrice": "20",
+      "priceCurrency": "USD",
+      "offerCount": "3"
+    },
+    "description": "Professional quotation and sales management software for SMEs. Create PDF quotes in 30 seconds, track conversions, manage contacts.",
+    "author": {
+      "@type": "Organization",
+      "name": "Standard Labs SpA",
+      "url": "https://stdsalesmanager.com"
+    },
+    "softwareVersion": "1.2.0",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "150"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============================================
+       NAV
+       ============================================ -->
+  <nav class="nav" id="nav" aria-label="Navegacion principal">
+    <div class="nav__container">
+      <a href="#" class="nav__brand" aria-label="Standard Sales Manager - Inicio">
+        <div class="nav__logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36" aria-hidden="true">
+            <rect x="4" y="4" width="32" height="32" rx="6" stroke="hsl(210,80%,55%)" stroke-width="2" fill="none"/>
+            <path d="M12 26V18" stroke="hsl(210,80%,55%)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M20 26V14" stroke="hsl(160,60%,45%)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M28 26V10" stroke="hsl(210,80%,55%)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 30h20" stroke="hsl(210,80%,55%)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="nav__brand-text">
+          <span class="nav__name">STANDARD SALES MANAGER</span>
+          <span class="nav__tagline" data-i18n="navTagline">Cotiza &middot; Controla &middot; Convierte</span>
+        </div>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#producto" data-i18n="navProducto">Producto</a></li>
+        <li><a href="#pricing" data-i18n="navPrecios">Precios</a></li>
+        <li><a href="#funcionalidades" data-i18n="navFuncionalidades">Funcionalidades</a></li>
+        <li><a href="#descargar" data-i18n="navDescargar">Descargar</a></li>
+        <li><a href="#descargar" class="nav__cta" data-i18n="navCta">Empieza Gratis</a></li>
+        <li class="nav__lang" aria-label="Selector de idioma">
+          <button class="nav__lang-btn nav__lang-btn--active" data-lang="es" aria-label="Espanol" title="Espanol">&#127466;&#127480;</button>
+          <button class="nav__lang-btn" data-lang="en" aria-label="English" title="English">&#127482;&#127480;</button>
+          <button class="nav__lang-btn" data-lang="pt" aria-label="Portugues" title="Portugues">&#127463;&#127479;</button>
+          <button class="nav__lang-btn" data-lang="fr" aria-label="Francais" title="Francais">&#127467;&#127479;</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <header class="hero" id="hero">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__split">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          <span data-i18n="heroBadge">GESTION COMERCIAL PARA PYMES</span>
+        </div>
+        <h1 class="hero__title">
+          <span data-i18n="heroTitle">TUS COTIZACIONES</span><br>
+          <span class="hero__title--accent" data-i18n="heroTitleAccent">BAJO CONTROL.</span>
+        </h1>
+        <p class="hero__subtitle" data-i18n="heroSubtitle">
+          Standard Sales Manager es el software de gestion de cotizaciones disenado para pequenas empresas y emprendedores. Sin complicaciones. Sin curva de aprendizaje. Con resultados.
+        </p>
+        <div class="hero__actions">
+          <a href="#descargar" class="btn btn--primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span data-i18n="heroCta">EMPIEZA GRATIS 20 DIAS</span>
+          </a>
+          <a href="#pricing" class="btn btn--outline" data-i18n="heroCtaSecondary">VER PRECIOS</a>
+        </div>
+        <p class="hero__no-card" data-i18n="heroNoCard">Sin tarjeta de credito &middot; Sin compromiso</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-number">&lt;1min</span>
+            <span class="hero__stat-label" data-i18n="heroStat1">Para crear una cotizacion</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-number">PDF</span>
+            <span class="hero__stat-label" data-i18n="heroStat2">Exportacion profesional</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-number">100%</span>
+            <span class="hero__stat-label" data-i18n="heroStat3">Metricas en tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANIMATED SOFTWARE DEMO (English, autoplay, loop) -->
+      <div class="hero__demo" aria-hidden="true">
+        <div class="demo-window">
+          <div class="demo-window__bar">
+            <span class="demo-dot demo-dot--red"></span>
+            <span class="demo-dot demo-dot--yellow"></span>
+            <span class="demo-dot demo-dot--green"></span>
+            <span class="demo-window__title">Standard Sales Manager</span>
+          </div>
+          <div class="demo-window__body">
+
+            <!-- Animated cursor -->
+            <div class="demo-cursor" aria-hidden="true">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M1 1L1 14L4.5 10.5L8 17L10.5 16L7 9.5L12 9.5L1 1Z" fill="white" stroke="hsl(220,15%,25%)" stroke-width="1"/></svg>
+            </div>
+
+            <!-- ====== SCENE 1: Creating a Quote (0-7s) ====== -->
+            <div class="demo-scene ds-1">
+              <div class="ds-sidebar">
+                <div class="ds-nav ds-nav--active"><span>&#9776;</span> Quotes</div>
+                <div class="ds-nav"><span>&#9862;</span> Contacts</div>
+                <div class="ds-nav"><span>&#9673;</span> Analytics</div>
+              </div>
+              <div class="ds-main">
+                <div class="ds-topbar">New Quote <span class="ds-draft-badge">Draft</span></div>
+                <div class="ds-form">
+                  <div class="ds-row ds-row--1">
+                    <span class="ds-label">Client</span>
+                    <span class="ds-input"><span class="ds-typetext">NovaTech Corp</span><span class="ds-caret"></span></span>
+                  </div>
+                  <div class="ds-row ds-row--2">
+                    <span class="ds-label">Contact</span>
+                    <span class="ds-input ds-input--filled">John Mitchell</span>
+                  </div>
+                  <div class="ds-row ds-row--3">
+                    <span class="ds-label">Email</span>
+                    <span class="ds-input ds-input--filled">john@novatech.com</span>
+                  </div>
+                  <div class="ds-items-head"><span>Description</span><span>Qty</span><span>Price</span><span>Total</span></div>
+                  <div class="ds-item ds-item--1"><span>Web Design Package</span><span>1</span><span>$1,200</span><span>$1,200</span></div>
+                  <div class="ds-item ds-item--2"><span>SEO Optimization</span><span>2</span><span>$350</span><span>$700</span></div>
+                  <div class="ds-item ds-item--3"><span>Content Strategy</span><span>5</span><span>$120</span><span>$600</span></div>
+                  <div class="ds-totals">
+                    <div class="ds-totals-line">Subtotal: <strong>$2,500</strong></div>
+                    <div class="ds-totals-line">Tax: <strong>$475</strong></div>
+                    <div class="ds-totals-final">Total: $2,975</div>
+                  </div>
+                  <div class="ds-btn-generate">Generate Quote &nbsp;&#10003;</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ====== SCENE 2: PDF Generated (7-14s) ====== -->
+            <div class="demo-scene ds-2">
+              <div class="ds-pdf-container">
+                <div class="ds-pdf-toolbar">
+                  <span class="ds-pdf-status">&#10003; Quote QT-0048 Generated</span>
+                  <div class="ds-pdf-actions">
+                    <span class="ds-pdf-btn">&#128424; PDF</span>
+                    <span class="ds-pdf-btn ds-pdf-btn--share">&#9993; Share</span>
+                  </div>
+                </div>
+                <div class="ds-pdf">
+                  <div class="ds-pdf-header">
+                    <div class="ds-pdf-logo">
+                      <div class="ds-pdf-logo-box">YOUR LOGO</div>
+                      <div class="ds-pdf-company">Apex Industries LLC</div>
+                    </div>
+                    <div class="ds-pdf-meta">
+                      <strong>QUOTATION QT-0048</strong><br>
+                      Date: Mar 29, 2026<br>
+                      Valid until: Apr 28, 2026
+                    </div>
+                  </div>
+                  <div class="ds-pdf-divider"></div>
+                  <div class="ds-pdf-client">To: <strong>NovaTech Corp</strong> — John Mitchell</div>
+                  <div class="ds-pdf-table">
+                    <div class="ds-pdf-row ds-pdf-row--head"><span>Description</span><span>Qty</span><span>Price</span><span>Total</span></div>
+                    <div class="ds-pdf-row"><span>Web Design Package</span><span>1</span><span>$1,200</span><span>$1,200</span></div>
+                    <div class="ds-pdf-row"><span>SEO Optimization</span><span>2</span><span>$350</span><span>$700</span></div>
+                    <div class="ds-pdf-row"><span>Content Strategy</span><span>5</span><span>$120</span><span>$600</span></div>
+                  </div>
+                  <div class="ds-pdf-bottom">
+                    <div class="ds-pdf-notes">Notes: Payment within 30 days</div>
+                    <div class="ds-pdf-totals-box">
+                      <div>Subtotal: $2,500</div>
+                      <div>Tax (19%): $475</div>
+                      <div class="ds-pdf-grand"><strong>Total: $2,975</strong></div>
+                    </div>
+                  </div>
+                  <div class="ds-pdf-footer">Powered by Standard Sales Manager</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ====== SCENE 3: Analytics Dashboard (14-21s) ====== -->
+            <div class="demo-scene ds-3">
+              <div class="ds-sidebar">
+                <div class="ds-nav"><span>&#9776;</span> Quotes</div>
+                <div class="ds-nav"><span>&#9862;</span> Contacts</div>
+                <div class="ds-nav ds-nav--active"><span>&#9673;</span> Analytics</div>
+              </div>
+              <div class="ds-main">
+                <div class="ds-topbar">Sales Analytics <span class="ds-year-badge">2026</span></div>
+                <div class="ds-metrics">
+                  <div class="ds-metric"><span class="ds-metric-num ds-metric-num--blue">47</span><span class="ds-metric-lbl">Pipeline</span></div>
+                  <div class="ds-metric"><span class="ds-metric-num ds-metric-num--green">77%</span><span class="ds-metric-lbl">Win Rate</span></div>
+                  <div class="ds-metric"><span class="ds-metric-num ds-metric-num--amber">$47K</span><span class="ds-metric-lbl">Revenue</span></div>
+                </div>
+                <div class="ds-charts-row">
+                  <div class="ds-chart-box">
+                    <div class="ds-chart-title">Monthly Revenue</div>
+                    <div class="ds-bars">
+                      <div class="ds-bar" style="--h:35%"><span>J</span></div>
+                      <div class="ds-bar" style="--h:52%"><span>F</span></div>
+                      <div class="ds-bar" style="--h:48%"><span>M</span></div>
+                      <div class="ds-bar" style="--h:71%"><span>A</span></div>
+                      <div class="ds-bar" style="--h:63%"><span>M</span></div>
+                      <div class="ds-bar ds-bar--accent" style="--h:90%"><span>J</span></div>
+                    </div>
+                  </div>
+                  <div class="ds-chart-box">
+                    <div class="ds-chart-title">Win Rate</div>
+                    <div class="ds-donut-wrap">
+                      <svg viewBox="0 0 80 80" class="ds-donut-svg">
+                        <circle cx="40" cy="40" r="30" fill="none" stroke="hsl(220,15%,16%)" stroke-width="8"/>
+                        <circle cx="40" cy="40" r="30" fill="none" stroke="hsl(160,60%,45%)" stroke-width="8" stroke-dasharray="0 188" stroke-linecap="round" transform="rotate(-90 40 40)" class="ds-donut-fill"/>
+                      </svg>
+                      <span class="ds-donut-pct">77%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ds-clients-list">
+                  <div class="ds-chart-title">Top Clients</div>
+                  <div class="ds-client"><span>NovaTech Corp</span><div class="ds-client-bar" style="--w:90%"></div><span>$8.2K</span></div>
+                  <div class="ds-client"><span>Summit Ltd</span><div class="ds-client-bar" style="--w:65%"></div><span>$5.9K</span></div>
+                  <div class="ds-client"><span>Orion Group</span><div class="ds-client-bar" style="--w:50%"></div><span>$4.5K</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ====== SCENE 4: Mobile App + Team (21-28s) ====== -->
+            <div class="demo-scene ds-4">
+              <div class="ds-split-view">
+                <!-- Phone mockup -->
+                <div class="ds-phone">
+                  <div class="ds-phone-notch"></div>
+                  <div class="ds-phone-screen">
+                    <div class="ds-phone-header">SSM <span class="ds-phone-sync">&#8635;</span></div>
+                    <div class="ds-phone-stats">
+                      <div class="ds-phone-stat"><strong>24</strong><br><small>Invoiced</small></div>
+                      <div class="ds-phone-stat"><strong>$47K</strong><br><small>Revenue</small></div>
+                      <div class="ds-phone-stat"><strong>77%</strong><br><small>Conv.</small></div>
+                    </div>
+                    <div class="ds-phone-card">
+                      <div class="ds-phone-card-top"><strong>QT-0048</strong><span class="ds-phone-badge">Issued</span></div>
+                      <div class="ds-phone-card-info">NovaTech Corp — $2,975</div>
+                    </div>
+                    <div class="ds-phone-card">
+                      <div class="ds-phone-card-top"><strong>QT-0047</strong><span class="ds-phone-badge ds-phone-badge--green">Invoiced</span></div>
+                      <div class="ds-phone-card-info">Summit Ltd — $875</div>
+                    </div>
+                    <div class="ds-phone-nav">
+                      <span>&#9776;</span><span>&#9862;</span><span>&#9673;</span><span>&#9881;</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Team & features info -->
+                <div class="ds-features-panel">
+                  <div class="ds-feature-item ds-fi--1">
+                    <div class="ds-fi-icon">&#9881;</div>
+                    <div class="ds-fi-text"><strong>Fully Customizable</strong><br>Your logo, colors & company data</div>
+                  </div>
+                  <div class="ds-feature-item ds-fi--2">
+                    <div class="ds-fi-icon">&#128101;</div>
+                    <div class="ds-fi-text"><strong>Team Members</strong><br>Assign emitters to your team</div>
+                  </div>
+                  <div class="ds-feature-item ds-fi--3">
+                    <div class="ds-fi-icon">&#9729;</div>
+                    <div class="ds-fi-text"><strong>Cloud Synced</strong><br>Desktop &harr; Mobile, always in sync</div>
+                  </div>
+                  <div class="ds-feature-item ds-fi--4">
+                    <div class="ds-fi-icon">&#128196;</div>
+                    <div class="ds-fi-text"><strong>PDF Reports</strong><br>Annual, monthly & per-client reports</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ====== FLOATING CALLOUTS ====== -->
+            <div class="demo-callout dc-1">Create professional quotes in seconds</div>
+            <div class="demo-callout dc-2">100% customizable &mdash; your logo, your brand</div>
+            <div class="demo-callout dc-3">Real-time metrics &amp; conversion tracking</div>
+            <div class="demo-callout dc-4">Mobile app included &mdash; assign your team</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       TRUST BAR
+       ============================================ -->
+  <section class="trust-bar" aria-label="Estadisticas destacadas">
+    <div class="container">
+      <div class="trust-bar__grid">
+        <div class="trust-bar__item">
+          <span class="trust-bar__number" data-i18n="trustStat1">&lt;1min</span>
+          <span class="trust-bar__label" data-i18n="trustLabel1">para crear cotizacion</span>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__number" data-i18n="trustStat2">PDF</span>
+          <span class="trust-bar__label" data-i18n="trustLabel2">exportacion profesional</span>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__number" data-i18n="trustStat3">4</span>
+          <span class="trust-bar__label" data-i18n="trustLabel3">idiomas disponibles</span>
+        </div>
+        <div class="trust-bar__item">
+          <span class="trust-bar__number" data-i18n="trustStat4">100%</span>
+          <span class="trust-bar__label" data-i18n="trustLabel4">datos encriptados</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROBLEMA / SOLUCION
+       ============================================ -->
+  <section class="section problem" id="problema">
+    <div class="container">
+      <div class="problem__grid">
+        <div class="problem__card problem__card--bad">
+          <div class="problem__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <h3 data-i18n="problemBadTitle">Sin Standard Sales Manager</h3>
+          <ul>
+            <li data-i18n="problemBad1">Cotizaciones en Excel sin branding ni formato profesional</li>
+            <li data-i18n="problemBad2">Cero visibilidad de tu pipeline comercial</li>
+            <li data-i18n="problemBad3">No mides tu tasa de conversion ni tu win rate</li>
+            <li data-i18n="problemBad4">Pierdes el seguimiento de prospectos y leads</li>
+            <li data-i18n="problemBad5">Numeracion manual con errores y sin trazabilidad</li>
+          </ul>
+        </div>
+        <div class="problem__card problem__card--good">
+          <div class="problem__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 data-i18n="problemGoodTitle">Con Standard Sales Manager</h3>
+          <ul>
+            <li data-i18n="problemGood1">Cotizaciones profesionales con tu branding en menos de 1 minuto</li>
+            <li data-i18n="problemGood2">Dashboard con KPIs mensuales, anuales y por cliente</li>
+            <li data-i18n="problemGood3">Win rate, conversion y forecast comercial en tiempo real</li>
+            <li data-i18n="problemGood4">Base de prospectos y contactos que se llena sola</li>
+            <li data-i18n="problemGood5">Trazabilidad completa: numeracion y versionamiento automatico</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCTO
+       ============================================ -->
+  <section class="section product" id="producto">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="productLabel">EL PRODUCTO</span>
+        <h2 class="section__title"><span data-i18n="productTitle">Simple por fuera,</span><br><span class="text--accent" data-i18n="productTitleAccent">poderoso por dentro.</span></h2>
+        <p class="section__desc" data-i18n="productDesc">No es un CRM. No es un ERP. Es tu herramienta para cotizar, hacer seguimiento y cerrar negocios.</p>
+      </div>
+      <div class="product__grid">
+        <div class="product__card product__card--featured">
+          <div class="product__card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 data-i18n="productCard1Title">Cotizaciones Profesionales</h3>
+          <p data-i18n="productCard1Desc">Crea cotizaciones con tu logo, datos de empresa y formato profesional. Exporta a PDF con un clic. Numeracion correlativa automatica que solo se asigna al emitir.</p>
+        </div>
+        <div class="product__card">
+          <div class="product__card-icon product__card-icon--green">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 data-i18n="productCard2Title">Sales Analytics</h3>
+          <p data-i18n="productCard2Desc">Win rate, pipeline comercial, ranking de clientes, ticket promedio y forecast por periodo. Todo automatico, sin cargar datos extra.</p>
+        </div>
+        <div class="product__card">
+          <div class="product__card-icon product__card-icon--amber">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 data-i18n="productCard3Title">Base de Contactos</h3>
+          <p data-i18n="productCard3Desc">Cada lead que cotizas se registra automaticamente como contacto con empresa, email y telefono. Tu CRM liviano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FUNCIONALIDADES
+       ============================================ -->
+  <section class="section modules" id="funcionalidades">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="featuresLabel">FUNCIONALIDADES</span>
+        <h2 class="section__title"><span data-i18n="featuresTitle">Todo lo que necesitas,</span><br><span class="text--accent" data-i18n="featuresTitleAccent">nada que te sobre.</span></h2>
+        <p class="section__desc" data-i18n="featuresDesc">Disenado para que emitas tu primera cotizacion en menos de un minuto.</p>
+      </div>
+      <!-- Main 6 features (always visible) -->
+      <div class="modules__grid">
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature1Title">Exportacion PDF</h4>
+            <p data-i18n="feature1Desc">Un clic y tu cotizacion tiene formato profesional listo para enviar.</p>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature2Title">KPIs en Tiempo Real</h4>
+            <p data-i18n="feature2Desc">Dashboard con metricas clave: win rate, pipeline, ticket promedio y forecast.</p>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature3Title">Multiusuario</h4>
+            <p data-i18n="feature3Desc">Trabaja con tu equipo desde distintos PCs en la misma red. Datos compartidos.</p>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature4Title">Versionamiento</h4>
+            <p data-i18n="feature4Desc">Edita cotizaciones emitidas y genera versiones (.b, .c) sin perder historial.</p>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--cyan">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature5Title">App Movil Sincronizada</h4>
+            <p data-i18n="feature5Desc">Cotiza desde tu celular con sincronizacion automatica. Android disponible.</p>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-card__icon module-card__icon--orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="module-card__content">
+            <h4 data-i18n="feature6Title">4 Idiomas</h4>
+            <p data-i18n="feature6Desc">Interfaz en espanol, ingles, portugues y frances. Llega a mas mercados.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Additional features -->
+      <div class="modules__extra" id="modulesExtra">
+        <div class="modules__grid modules__grid--extra">
+          <div class="module-card">
+            <div class="module-card__icon module-card__icon--red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="module-card__content">
+              <h4 data-i18n="feature7Title">Alertas de Vencimiento</h4>
+              <p data-i18n="feature7Desc">Cotizaciones vencidas aparecen como alerta. Descártalas o haz seguimiento.</p>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="module-card__icon module-card__icon--amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="module-card__content">
+              <h4 data-i18n="feature8Title">Tu Marca, Tu Estilo</h4>
+              <p data-i18n="feature8Desc">Logo, colores corporativos, slogan y multiples layouts. Hazlo tuyo.</p>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="module-card__icon module-card__icon--indigo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="module-card__content">
+              <h4 data-i18n="feature9Title">Loss Reason Tracking</h4>
+              <p data-i18n="feature9Desc">Registra por que no cerraste el deal: precio, competencia, timing. Mejora tu close rate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- All features visible, no toggle needed -->
+    </div>
+  </section>
+
+  <!-- ============================================
+       FIELD SALES — Vendedor en terreno
+       ============================================ -->
+  <section class="section field-sales" id="terreno">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="fieldLabel">VENTAS EN TERRENO</span>
+        <h2 class="section__title"><span data-i18n="fieldTitle">Cotiza en terreno.</span><br><span class="text--accent" data-i18n="fieldTitleAccent">Cierra en el momento.</span></h2>
+        <p class="section__desc" data-i18n="fieldDesc">No hagas esperar a tu cliente dias por una cotizacion. Generala frente a el, desde tu celular, en menos de 1 minuto. Eso es impacto comercial.</p>
+      </div>
+
+      <div class="field-sales__timeline">
+        <!-- Step 1 -->
+        <div class="field-step">
+          <div class="field-step__number">1</div>
+          <div class="field-step__content">
+            <div class="field-step__icon">&#128222;</div>
+            <h4 data-i18n="fieldStep1Title">Estas con el cliente</h4>
+            <p data-i18n="fieldStep1Desc">Visita en terreno. El cliente te pide una cotizacion. Antes esperaba dias. Ahora abres la app.</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="field-step">
+          <div class="field-step__number">2</div>
+          <div class="field-step__content">
+            <div class="field-step__icon">&#9997;</div>
+            <h4 data-i18n="fieldStep2Title">Cotizas en 1 minuto</h4>
+            <p data-i18n="fieldStep2Desc">Seleccionas el contacto, agregas items, tu logo y datos de empresa ya estan configurados. Generas la cotizacion.</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="field-step">
+          <div class="field-step__number">3</div>
+          <div class="field-step__content">
+            <div class="field-step__icon">&#128228;</div>
+            <h4 data-i18n="fieldStep3Title">Compartes al instante</h4>
+            <p data-i18n="fieldStep3Desc">PDF profesional con tu branding. Lo envias por WhatsApp o email ahi mismo. El cliente lo tiene en la mano.</p>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="field-step">
+          <div class="field-step__number">4</div>
+          <div class="field-step__content">
+            <div class="field-step__icon">&#9729;</div>
+            <h4 data-i18n="fieldStep4Title">Queda en tu base de datos</h4>
+            <p data-i18n="fieldStep4Desc">La cotizacion se sincroniza con tu PC. El contacto se registra automaticamente. Tu pipeline se actualiza en tiempo real.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-sales__impact">
+        <div class="field-impact__card">
+          <span class="field-impact__icon">&#9889;</span>
+          <div>
+            <strong data-i18n="fieldImpact1Title">Impacto inmediato</strong>
+            <p data-i18n="fieldImpact1Desc">El cliente ve profesionalismo y velocidad. Eso genera confianza y acelera el cierre.</p>
+          </div>
+        </div>
+        <div class="field-impact__card">
+          <span class="field-impact__icon">&#128200;</span>
+          <div>
+            <strong data-i18n="fieldImpact2Title">Todo queda registrado</strong>
+            <p data-i18n="fieldImpact2Desc">Sin papeles, sin olvidos. Cada visita, cada cotizacion, cada prospecto — en tu base de datos.</p>
+          </div>
+        </div>
+        <div class="field-impact__card">
+          <span class="field-impact__icon">&#128101;</span>
+          <div>
+            <strong data-i18n="fieldImpact3Title">Tu equipo lo ve</strong>
+            <p data-i18n="fieldImpact3Desc">Si tu vendedor cotizo en terreno, tu ya lo ves en el dashboard del PC. Sin esperar que vuelva a la oficina.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRICING
+       ============================================ -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="pricingLabel">PRECIOS</span>
+        <h2 class="section__title"><span data-i18n="pricingTitle">Planes simples,</span><br><span class="text--accent" data-i18n="pricingTitleAccent">sin sorpresas.</span></h2>
+        <p class="section__desc" data-i18n="pricingDesc">Elige el plan que se adapta a tu equipo. Cambia o cancela cuando quieras.</p>
+      </div>
+
+      <!-- Billing toggle -->
+      <div class="pricing__toggle" role="radiogroup" aria-label="Periodo de facturacion">
+        <button class="pricing__toggle-btn" data-period="monthly" role="radio" aria-checked="false" data-i18n="pricingMonthly">Mensual</button>
+        <button class="pricing__toggle-btn pricing__toggle-btn--active" data-period="yearly" role="radio" aria-checked="true" data-i18n="pricingYearly">1 Ano</button>
+        <button class="pricing__toggle-btn" data-period="biennial" role="radio" aria-checked="false" data-i18n="pricingBiennial">2 Anos</button>
+      </div>
+
+      <div class="pricing__grid">
+        <!-- BASICO -->
+        <div class="pricing__card">
+          <div class="pricing__card-header">
+            <h3 class="pricing__plan-name" data-i18n="pricingBasicName">BASICO</h3>
+            <p class="pricing__plan-users" data-i18n="pricingBasicUsers">1-3 usuarios</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__amount" data-price-monthly="10" data-price-yearly="7" data-price-biennial="5">$7</span>
+            <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
+          </div>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 30%" data-savings-biennial="Ahorra 50%">Ahorra 30%</p>
+          <ul class="pricing__features">
+            <li data-i18n="pricingBasicF1">Cotizaciones ilimitadas</li>
+            <li data-i18n="pricingBasicF2">PDF profesional</li>
+            <li data-i18n="pricingBasicF3">App movil</li>
+            <li data-i18n="pricingBasicF4">Contactos</li>
+            <li data-i18n="pricingBasicF5">Analytics basico</li>
+            <li data-i18n="pricingBasicF6">Logo propio</li>
+          </ul>
+          <a href="#contacto" class="btn btn--outline btn--full" data-i18n="pricingCta">Empieza Gratis</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing__card pricing__card--featured">
+          <div class="pricing__card-badge" data-i18n="pricingPopular">MAS POPULAR</div>
+          <div class="pricing__card-header">
+            <h3 class="pricing__plan-name" data-i18n="pricingProName">PRO</h3>
+            <p class="pricing__plan-users" data-i18n="pricingProUsers">Hasta 5 usuarios</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__amount" data-price-monthly="15" data-price-yearly="10" data-price-biennial="8">$10</span>
+            <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
+          </div>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 33%" data-savings-biennial="Ahorra 47%">Ahorra 33%</p>
+          <ul class="pricing__features">
+            <li data-i18n="pricingProF1">Todo en Basico</li>
+            <li data-i18n="pricingProF2">Hasta 5 usuarios</li>
+            <li data-i18n="pricingProF3">Analytics avanzado</li>
+            <li data-i18n="pricingProF4">Soporte prioritario</li>
+          </ul>
+          <a href="#contacto" class="btn btn--primary btn--full" data-i18n="pricingCta">Empieza Gratis</a>
+        </div>
+
+        <!-- ELITE -->
+        <div class="pricing__card">
+          <div class="pricing__card-header">
+            <h3 class="pricing__plan-name" data-i18n="pricingEliteName">ELITE</h3>
+            <p class="pricing__plan-users" data-i18n="pricingEliteUsers">Hasta 15 usuarios</p>
+          </div>
+          <div class="pricing__price">
+            <span class="pricing__amount" data-price-monthly="20" data-price-yearly="15" data-price-biennial="13">$15</span>
+            <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
+          </div>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 25%" data-savings-biennial="Ahorra 35%">Ahorra 25%</p>
+          <ul class="pricing__features">
+            <li data-i18n="pricingEliteF1">Todo en Pro</li>
+            <li data-i18n="pricingEliteF2">Hasta 15 usuarios</li>
+            <li data-i18n="pricingEliteF3">Analytics avanzado</li>
+            <li data-i18n="pricingEliteF4">Soporte dedicado</li>
+          </ul>
+          <a href="#contacto" class="btn btn--outline btn--full" data-i18n="pricingCta">Empieza Gratis</a>
+        </div>
+      </div>
+
+      <p class="pricing__guarantee" data-i18n="pricingGuarantee">Prueba gratis de 20 dias habiles &middot; Sin tarjeta de credito &middot; Todas las funcionalidades</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DOWNLOADS
+       ============================================ -->
+  <section class="section downloads" id="descargar">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="downloadsLabel">DESCARGAR</span>
+        <h2 class="section__title"><span data-i18n="downloadsTitle">Disponible donde</span><br><span class="text--accent" data-i18n="downloadsTitleAccent">lo necesites.</span></h2>
+      </div>
+      <div class="downloads__grid">
+        <!-- Windows -->
+        <div class="downloads__card">
+          <div class="downloads__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+          </div>
+          <h3 data-i18n="downloadWinTitle">Descargar para Windows</h3>
+          <p class="downloads__meta" data-i18n="downloadWinMeta">Version 1.2.0 &middot; ~85 MB &middot; Windows 10+</p>
+          <a href="https://github.com/standardlabs/standard-sales-manager/releases/latest" class="btn btn--primary" target="_blank" rel="noopener noreferrer" data-i18n="downloadWinBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar .exe
+          </a>
+        </div>
+        <!-- Android -->
+        <div class="downloads__card">
+          <div class="downloads__icon downloads__icon--android">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.341a1 1 0 001-1v-5.4a1 1 0 00-1-1h-11a1 1 0 00-1 1v5.4a1 1 0 001 1m5.5 2.659v2.5a1 1 0 001 1 1 1 0 001-1v-2.5m-7 0v2.5a1 1 0 001 1 1 1 0 001-1v-2.5m-5.5-5.059v4a1 1 0 001 1 1 1 0 001-1v-4a1 1 0 00-1-1 1 1 0 00-1 1m14 0v4a1 1 0 001 1 1 1 0 001-1v-4a1 1 0 00-1-1 1 1 0 00-1 1M15.5 4.441l1.2-1.8a.3.3 0 00-.5-.3l-1.3 1.9a5.7 5.7 0 00-2.9-.8 5.7 5.7 0 00-2.9.8L7.8 2.341a.3.3 0 00-.5.3l1.2 1.8a4.5 4.5 0 00-2.5 3.5h12a4.5 4.5 0 00-2.5-3.5m-5.5 2a.5.5 0 110-1 .5.5 0 010 1m4 0a.5.5 0 110-1 .5.5 0 010 1"/></svg>
+          </div>
+          <h3 data-i18n="downloadAndroidTitle">Disponible en Google Play</h3>
+          <p class="downloads__meta" data-i18n="downloadAndroidMeta">Android 8.0+ &middot; Sincronizacion automatica</p>
+          <a href="#" class="btn btn--outline" target="_blank" rel="noopener noreferrer" data-i18n="downloadAndroidBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Google Play
+          </a>
+          <div class="downloads__qr" aria-label="Codigo QR para Google Play">
+            <div class="downloads__qr-placeholder" data-i18n="downloadQrLabel">QR Code</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ANALYTICS SHOWCASE
+       ============================================ -->
+  <section class="section analytics-showcase" id="analytics">
+    <div class="container">
+      <div class="sos__content">
+        <div class="sos__text">
+          <span class="section__label" data-i18n="analyticsLabel">SALES ANALYTICS</span>
+          <h2 class="section__title"><span data-i18n="analyticsTitle">Data-driven</span><br><span class="text--accent" data-i18n="analyticsTitleAccent">decisions.</span></h2>
+          <p data-i18n="analyticsDesc">Transforma tu actividad comercial en insights accionables. Win rate, pipeline, forecast y performance por cliente — todo en tiempo real, sin configurar nada.</p>
+          <ul class="sos__features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(210,80%,55%)" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="analyticsF1">Win rate real — cotizaciones emitidas vs facturadas</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(210,80%,55%)" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="analyticsF2">Ranking de clientes por revenue y volumen</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(210,80%,55%)" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="analyticsF3">Tendencias mensuales y estacionalidad de ventas</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(210,80%,55%)" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="analyticsF4">Ticket promedio, recompra y performance por cuenta</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(210,80%,55%)" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="analyticsF5">Reports mensuales y anuales exportables a PDF</span>
+            </li>
+          </ul>
+        </div>
+        <div class="sos__visual">
+          <div class="analytics-demo">
+            <div class="analytics-demo__card">
+              <div class="analytics-demo__header">
+                <span class="analytics-demo__label" data-i18n="analyticsDemoLabel">Conversion 2026</span>
+                <span class="analytics-demo__value">68%</span>
+              </div>
+              <div class="analytics-demo__bars">
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--emitidas" style="height:80%"></div>
+                  <span>Ene</span>
+                </div>
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--emitidas" style="height:60%"></div>
+                  <span>Feb</span>
+                </div>
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--emitidas" style="height:95%"></div>
+                  <span>Mar</span>
+                </div>
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--facturadas" style="height:70%"></div>
+                  <span>Abr</span>
+                </div>
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--facturadas" style="height:85%"></div>
+                  <span>May</span>
+                </div>
+                <div class="analytics-demo__bar">
+                  <div class="analytics-demo__bar-fill analytics-demo__bar-fill--emitidas" style="height:50%"></div>
+                  <span>Jun</span>
+                </div>
+              </div>
+            </div>
+            <div class="analytics-demo__floating analytics-demo__floating--1">
+              <span class="analytics-demo__floating-number">$12.4M</span>
+              <span class="analytics-demo__floating-label" data-i18n="analyticsDemoFloat1">Facturado</span>
+            </div>
+            <div class="analytics-demo__floating analytics-demo__floating--2">
+              <span class="analytics-demo__floating-number">+23%</span>
+              <span class="analytics-demo__floating-label" data-i18n="analyticsDemoFloat2">vs mes anterior</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       AUDIENCIA
+       ============================================ -->
+  <section class="section audience">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="audienceLabel">PARA QUIEN ES?</span>
+        <h2 class="section__title"><span data-i18n="audienceTitle">Disenado para quienes</span><br><span class="text--accent" data-i18n="audienceTitleAccent">venden de verdad.</span></h2>
+      </div>
+      <div class="audience__grid">
+        <div class="audience__card">
+          <div class="audience__emoji" aria-hidden="true">&#128295;</div>
+          <h4 data-i18n="audience1Title">Talleres y Servicios Tecnicos</h4>
+          <p data-i18n="audience1Desc">Cotiza repuestos, mano de obra y servicios. Haz follow-up y mide tu conversion por tipo de servicio.</p>
+        </div>
+        <div class="audience__card">
+          <div class="audience__emoji" aria-hidden="true">&#127959;&#65039;</div>
+          <h4 data-i18n="audience2Title">Constructoras y Contratistas</h4>
+          <p data-i18n="audience2Desc">Pipeline por proyecto, tracking de OC y visibilidad del forecast por periodo.</p>
+        </div>
+        <div class="audience__card">
+          <div class="audience__emoji" aria-hidden="true">&#127978;</div>
+          <h4 data-i18n="audience3Title">Comercio y Distribuidoras</h4>
+          <p data-i18n="audience3Desc">Cotizaciones rapidas, follow-up por cuenta y metricas de rendimiento comercial.</p>
+        </div>
+        <div class="audience__card">
+          <div class="audience__emoji" aria-hidden="true">&#128187;</div>
+          <h4 data-i18n="audience4Title">Freelancers y Consultores</h4>
+          <p data-i18n="audience4Desc">Cotiza servicios, trackea tu pipeline personal y genera reportes de tu actividad mes a mes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FAQ
+       ============================================ -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="faqLabel">PREGUNTAS FRECUENTES</span>
+        <h2 class="section__title"><span data-i18n="faqTitle">Resolvemos tus</span><br><span class="text--accent" data-i18n="faqTitleAccent">dudas rapido.</span></h2>
+      </div>
+      <div class="faq__list">
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq1Q">Necesito tarjeta de credito para la prueba gratis?</summary>
+          <p class="faq__answer" data-i18n="faq1A">No. La prueba gratuita de 20 dias habiles no requiere tarjeta de credito ni compromiso alguno. Accedes a todas las funcionalidades desde el primer dia.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq2Q">Puedo cancelar en cualquier momento?</summary>
+          <p class="faq__answer" data-i18n="faq2A">Si, puedes cancelar tu suscripcion en cualquier momento sin penalizacion. Tu acceso continuara hasta el final del periodo pagado.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq3Q">Mis datos estan seguros?</summary>
+          <p class="faq__answer" data-i18n="faq3A">Absolutamente. Utilizamos encriptacion AES-GCM para proteger todos tus datos. Tu informacion se almacena de forma segura en la nube con respaldos automaticos.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq4Q">Funciona sin internet?</summary>
+          <p class="faq__answer" data-i18n="faq4A">Si. Standard Sales Manager funciona en modo offline. Cuando recuperes la conexion, tus datos se sincronizaran automaticamente.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq5Q">Puedo usar mi logo en las cotizaciones?</summary>
+          <p class="faq__answer" data-i18n="faq5A">Si, en todos los planes pagos puedes incluir tu logo corporativo en las cotizaciones PDF para reforzar tu imagen de marca.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question" data-i18n="faq6Q">En que idiomas esta disponible?</summary>
+          <p class="faq__answer" data-i18n="faq6A">Standard Sales Manager esta disponible en 4 idiomas: Espanol, Ingles, Portugues (Brasil) y Frances. Puedes cambiar el idioma en cualquier momento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       NOSOTROS / EMPRESA
+       ============================================ -->
+  <section class="section about" id="nosotros">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="aboutLabel">LA EMPRESA</span>
+        <h2 class="section__title" data-i18n="aboutTitle">Standard Labs SpA</h2>
+        <p class="section__desc" data-i18n="aboutDesc">Desarrollamos herramientas de gestion empresarial accesibles para PYMEs y emprendedores. Tecnologia practica, sin complejidad innecesaria.</p>
+      </div>
+      <div class="about__values">
+        <div class="about__value">
+          <div class="about__value-number">01</div>
+          <h4 data-i18n="aboutValue1Title">Simplicidad</h4>
+          <p data-i18n="aboutValue1Desc">Creemos que un software util es aquel que no necesita manual. Si es dificil de usar, esta mal disenado.</p>
+        </div>
+        <div class="about__value">
+          <div class="about__value-number">02</div>
+          <h4 data-i18n="aboutValue2Title">Datos con Proposito</h4>
+          <p data-i18n="aboutValue2Desc">Cada metrica que mostramos tiene un proposito: ayudarte a tomar mejores decisiones comerciales sin complicar tu operacion.</p>
+        </div>
+        <div class="about__value">
+          <div class="about__value-number">03</div>
+          <h4 data-i18n="aboutValue3Title">Hecho para Crecer</h4>
+          <p data-i18n="aboutValue3Desc">Escala de 1 a 15 usuarios sin cambiar de herramienta. Tu software crece contigo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA / CONTACTO
+       ============================================ -->
+  <section class="section cta-section" id="contacto">
+    <div class="container">
+      <div class="cta__center">
+        <span class="section__label" data-i18n="ctaLabel">EMPIEZA HOY</span>
+        <h2 class="section__title"><span data-i18n="ctaTitle">¿Listo para tomar el</span><br><span class="text--accent" data-i18n="ctaTitleAccent">control de tus ventas?</span></h2>
+        <p class="cta__desc" data-i18n="ctaDesc">Descarga gratis. Prueba 20 días sin tarjeta de crédito. Si te sirve, elige tu plan y paga en línea.</p>
+        <div class="cta__buttons">
+          <a href="#descargar" class="btn btn--primary btn--lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="ctaDownload">DESCARGAR GRATIS</span>
+          </a>
+          <a href="#pricing" class="btn btn--outline btn--lg">
+            <span data-i18n="ctaPricing">VER PLANES Y PRECIOS</span>
+          </a>
+        </div>
+        <p class="cta__note" data-i18n="ctaNote">Sin formularios · Sin esperas · Descarga, prueba y decide</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <div class="nav__brand" style="pointer-events:none;">
+            <div class="nav__logo">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36" aria-hidden="true">
+                <rect x="4" y="4" width="32" height="32" rx="6" stroke="hsl(210,80%,55%)" stroke-width="2" fill="none"/>
+                <path d="M12 26V18" stroke="hsl(210,80%,55%)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 26V14" stroke="hsl(160,60%,45%)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M28 26V10" stroke="hsl(210,80%,55%)" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="nav__brand-text">
+              <span class="nav__name">STANDARD SALES MANAGER</span>
+              <span class="nav__tagline" data-i18n="navTagline">Cotiza &middot; Controla &middot; Convierte</span>
+            </div>
+          </div>
+          <p class="footer__desc" data-i18n="footerDesc">Software de gestion de cotizaciones<br>para PYMEs y emprendedores.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h5 data-i18n="footerColProducto">Producto</h5>
+            <a href="#producto" data-i18n="footerLinkCaracteristicas">Caracteristicas</a>
+            <a href="#funcionalidades" data-i18n="footerLinkFuncionalidades">Funcionalidades</a>
+            <a href="#pricing" data-i18n="footerLinkPrecios">Precios</a>
+            <a href="#descargar" data-i18n="footerLinkDescargar">Descargar</a>
+            <a href="#analytics" data-i18n="footerLinkAnalytics">Analytics</a>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footerColEmpresa">Empresa</h5>
+            <a href="#nosotros" data-i18n="footerLinkNosotros">Nosotros</a>
+            <a href="#faq" data-i18n="footerLinkFaq">FAQ</a>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footerColLegal">Legal</h5>
+            <a href="/terminos" data-i18n="footerLinkTerminos">Terminos de Servicio</a>
+            <a href="/privacidad" data-i18n="footerLinkPrivacidad">Politica de Privacidad</a>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footerColIdioma">Idioma</h5>
+            <div class="footer__lang" aria-label="Selector de idioma">
+              <button class="nav__lang-btn nav__lang-btn--active" data-lang="es" aria-label="Espanol" title="Espanol">&#127466;&#127480;</button>
+              <button class="nav__lang-btn" data-lang="en" aria-label="English" title="English">&#127482;&#127480;</button>
+              <button class="nav__lang-btn" data-lang="pt" aria-label="Portugues" title="Portugues">&#127463;&#127479;</button>
+              <button class="nav__lang-btn" data-lang="fr" aria-label="Francais" title="Francais">&#127467;&#127479;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Standard Labs SpA — <span data-i18n="footerRights">Todos los derechos reservados.</span> Santiago, Chile.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ==========================================
+       PRICING TOGGLE
+       ========================================== */
+    (function() {
+      const toggleBtns = document.querySelectorAll('.pricing__toggle-btn');
+      const amounts = document.querySelectorAll('.pricing__amount');
+      const savings = document.querySelectorAll('.pricing__savings');
+      const billingNotes = document.querySelectorAll('.pricing__billing-note');
+
+      const billingLabels = {
+        monthly: 'Facturacion mensual',
+        yearly: 'Contrato anual',
+        biennial: 'Contrato 2 anos'
+      };
+
+      toggleBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var period = this.getAttribute('data-period');
+          toggleBtns.forEach(function(b) {
+            b.classList.remove('pricing__toggle-btn--active');
+            b.setAttribute('aria-checked', 'false');
+          });
+          this.classList.add('pricing__toggle-btn--active');
+          this.setAttribute('aria-checked', 'true');
+
+          amounts.forEach(function(el) {
+            el.textContent = '$' + el.getAttribute('data-price-' + period);
+          });
+          savings.forEach(function(el) {
+            var savingsText = el.getAttribute('data-savings-' + period);
+            el.textContent = savingsText;
+            el.style.visibility = savingsText ? 'visible' : 'hidden';
+          });
+          billingNotes.forEach(function(el) {
+            el.textContent = billingLabels[period] || '';
+          });
+        });
+      });
+    })();
+
+    /* ==========================================
+       FEATURES TOGGLE (show more / show less)
+       ========================================== */
+    (function() {
+      var toggleBtn = document.getElementById('modulesToggle');
+      var extraSection = document.getElementById('modulesExtra');
+      if (!toggleBtn || !extraSection) return;
+
+      toggleBtn.addEventListener('click', function() {
+        var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          extraSection.hidden = true;
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.querySelector('span').textContent = 'Ver todas las funcionalidades';
+          toggleBtn.querySelector('.modules__toggle-icon').style.transform = '';
+        } else {
+          extraSection.hidden = false;
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          toggleBtn.querySelector('span').textContent = 'Ver menos';
+          toggleBtn.querySelector('.modules__toggle-icon').style.transform = 'rotate(180deg)';
+        }
+      });
+    })();
+
+    /* ==========================================
+       FAQ ACCORDION (only one open at a time)
+       ========================================== */
+    (function() {
+      var faqItems = document.querySelectorAll('.faq__item');
+      faqItems.forEach(function(item) {
+        item.addEventListener('toggle', function() {
+          if (this.open) {
+            faqItems.forEach(function(other) {
+              if (other !== item) other.removeAttribute('open');
+            });
+          }
+        });
+      });
+    })();
+
+    /* ==========================================
+       i18n SYSTEM
+       ========================================== */
+    (function() {
+      var currentLang = 'es';
+
+      var translations = {
+        en: {
+          navTagline: 'Quote \u00b7 Control \u00b7 Convert',
+          navProducto: 'Product',
+          navPrecios: 'Pricing',
+          navFuncionalidades: 'Features',
+          navDescargar: 'Download',
+          navContacto: 'Contact',
+          navCta: 'Start Free',
+          heroBadge: 'SALES MANAGEMENT FOR SMES',
+          heroTitle: 'YOUR QUOTES<br><span class="hero__title--accent" data-i18n="heroTitleAccent">UNDER CONTROL.</span>',
+          heroTitleAccent: 'UNDER CONTROL.',
+          heroSubtitle: 'Standard Sales Manager is the quotation management software designed for small businesses and entrepreneurs. No complications. No learning curve. Results.',
+          heroCta: 'START FREE 20 DAYS',
+          heroCtaSecondary: 'SEE PRICING',
+          heroNoCard: 'No credit card \u00b7 No commitment',
+          heroStat1: 'To create a quote',
+          heroStat2: 'Professional export',
+          heroStat3: 'Real-time metrics',
+          trustStat1: 'to create a quote',
+          trustStat2: 'professional export',
+          trustStat3: 'languages available',
+          trustStat4: 'encrypted data',
+          problemBadTitle: 'Without Standard Sales Manager',
+          problemBad1: 'Quotes in Excel or Word without professional format',
+          problemBad2: 'You don\'t know how many quotes you issued this month',
+          problemBad3: 'You have no idea of your sales conversion rate',
+          problemBad4: 'You lose track of clients and companies',
+          problemBad5: 'Manual numbering with errors and duplicates',
+          problemGoodTitle: 'With Standard Sales Manager',
+          problemGood1: 'Professional PDF quotes in 30 seconds',
+          problemGood2: 'Dashboard with monthly and annual metrics',
+          problemGood3: 'Conversion charts: quoted vs invoiced',
+          problemGood4: 'Contact database that fills itself',
+          problemGood5: 'Automatic sequential numbering without errors',
+          productLabel: 'THE PRODUCT',
+          productTitle: 'Simple on the outside,<br><span class="text--accent" data-i18n="productTitleAccent">powerful on the inside.</span>',
+          productTitleAccent: 'powerful on the inside.',
+          productDesc: 'Not a CRM. Not an ERP. Exactly what you need: quote, control and convert.',
+          productCard1Title: 'Professional Quotes',
+          productCard1Desc: 'Create quotes with your logo, company data and professional format. Export to PDF with one click. Automatic sequential numbering assigned only upon issuance.',
+          productCard2Title: 'Sales Analytics',
+          productCard2Desc: 'Conversion charts, client ranking, seasonality, average ticket and repurchase rate. All automatic, no extra data loading.',
+          productCard3Title: 'Contact Database',
+          productCard3Desc: 'Every time you quote a new client, they are automatically added to your database with company, email, phone numbers and extension.',
+          featuresLabel: 'FEATURES',
+          featuresTitle: 'Everything you need,<br><span class="text--accent" data-i18n="featuresTitleAccent">nothing you don\'t.</span>',
+          featuresTitleAccent: 'nothing you don\'t.',
+          featuresDesc: 'Designed so you can issue your first quote in under a minute.',
+          feature1Title: 'PDF Export',
+          feature1Desc: 'One click and your quote has a professional format ready to send.',
+          feature2Title: 'Live Metrics',
+          feature2Desc: 'Dashboard with updated KPIs: issued, invoiced, pending, amounts.',
+          feature3Title: 'Multi-user',
+          feature3Desc: 'Work with your team from different PCs on the same network. Shared data.',
+          feature4Title: 'Versioning',
+          feature4Desc: 'Edit issued quotes and generate versions (.b, .c) without losing history.',
+          feature5Title: 'Synced Mobile App',
+          feature5Desc: 'Quote from your phone with automatic sync. Android available.',
+          feature6Title: '4 Languages',
+          feature6Desc: 'Interface in Spanish, English, Portuguese and French. Reach more markets.',
+          feature7Title: 'Expiry Alerts',
+          feature7Desc: 'Expired quotes appear as alerts. Discard them or follow up.',
+          feature8Title: 'Your Brand, Your Style',
+          feature8Desc: 'Logo, corporate colors, slogan and multiple layouts. Make it yours.',
+          feature9Title: 'Loss Reason',
+          feature9Desc: 'Record why you didn\'t close: price, competition, timing. Learn and improve.',
+          featuresShowMore: 'See all features',
+          pricingLabel: 'PRICING',
+          pricingTitle: 'Simple plans,<br><span class="text--accent" data-i18n="pricingTitleAccent">no surprises.</span>',
+          pricingTitleAccent: 'no surprises.',
+          pricingDesc: 'Choose the plan that fits your team. Change or cancel anytime.',
+          pricingMonthly: 'Monthly',
+          pricingYearly: '1 Year',
+          pricingBiennial: '2 Years',
+          pricingBasicName: 'BASIC',
+          pricingBasicUsers: '1-3 users',
+          pricingPerMonth: '/mo',
+          pricingBillingYearly: 'Annual contract',
+          pricingBasicF1: 'Unlimited quotes',
+          pricingBasicF2: 'Professional PDF',
+          pricingBasicF3: 'Mobile app',
+          pricingBasicF4: 'Contacts',
+          pricingBasicF5: 'Basic analytics',
+          pricingBasicF6: 'Custom logo',
+          pricingCta: 'Start Free',
+          pricingPopular: 'MOST POPULAR',
+          pricingProName: 'PRO',
+          pricingProUsers: 'Up to 5 users',
+          pricingProF1: 'Everything in Basic',
+          pricingProF2: 'Up to 5 users',
+          pricingProF3: 'Advanced analytics',
+          pricingProF4: 'Priority support',
+          pricingEliteName: 'ELITE',
+          pricingEliteUsers: 'Up to 15 users',
+          pricingEliteF1: 'Everything in Pro',
+          pricingEliteF2: 'Up to 15 users',
+          pricingEliteF3: 'Advanced analytics',
+          pricingEliteF4: 'Dedicated support',
+          pricingGuarantee: '20 business days free trial \u00b7 No credit card \u00b7 All features included',
+          downloadsLabel: 'DOWNLOAD',
+          downloadsTitle: 'Available where<br><span class="text--accent" data-i18n="downloadsTitleAccent">you need it.</span>',
+          downloadsTitleAccent: 'you need it.',
+          downloadWinTitle: 'Download for Windows',
+          downloadWinMeta: 'Version 1.2.0 \u00b7 ~85 MB \u00b7 Windows 10+',
+          downloadWinBtn: 'Download .exe',
+          downloadAndroidTitle: 'Available on Google Play',
+          downloadAndroidMeta: 'Android 8.0+ \u00b7 Automatic sync',
+          downloadAndroidBtn: 'Google Play',
+          downloadQrLabel: 'QR Code',
+          analyticsLabel: 'ANALYTICS',
+          analyticsTitle: 'Metrics that<br><span class="text--accent" data-i18n="analyticsTitleAccent">drive decisions.</span>',
+          analyticsTitleAccent: 'drive decisions.',
+          analyticsDesc: 'You don\'t need to be a data analyst. Standard Sales Manager turns your commercial activity into clear charts that tell you exactly how your business is doing.',
+          analyticsF1: 'Issued vs Invoiced \u2014 your real conversion rate',
+          analyticsF2: 'Top clients by quoted and invoiced volume',
+          analyticsF3: 'Seasonality \u2014 compare months and detect trends',
+          analyticsF4: 'Average ticket and repurchase rate per company',
+          analyticsF5: 'Monthly and annual reports exportable to PDF',
+          analyticsDemoLabel: 'Conversion 2026',
+          analyticsDemoFloat1: 'Invoiced',
+          analyticsDemoFloat2: 'vs previous month',
+          audienceLabel: 'WHO IS IT FOR?',
+          audienceTitle: 'Designed for those who<br><span class="text--accent" data-i18n="audienceTitleAccent">really sell.</span>',
+          audienceTitleAccent: 'really sell.',
+          audience1Title: 'Workshops & Technical Services',
+          audience1Desc: 'Quote parts, labor and services with a professional format that builds trust.',
+          audience2Title: 'Construction & Contractors',
+          audience2Desc: 'Control project quotes, track what became a PO and what\'s still pending.',
+          audience3Title: 'Commerce & Distributors',
+          audience3Desc: 'Issue quick quotes, follow up by client and measure your commercial performance.',
+          audience4Title: 'Freelancers & Consultants',
+          audience4Desc: 'Quote your services professionally and track your commercial activity month by month.',
+          faqLabel: 'FAQ',
+          faqTitle: 'We solve your<br><span class="text--accent" data-i18n="faqTitleAccent">questions fast.</span>',
+          faqTitleAccent: 'questions fast.',
+          faq1Q: 'Do I need a credit card for the free trial?',
+          faq1A: 'No. The 20 business day free trial does not require a credit card or any commitment. You get access to all features from day one.',
+          faq2Q: 'Can I cancel anytime?',
+          faq2A: 'Yes, you can cancel your subscription at any time without penalty. Your access will continue until the end of the paid period.',
+          faq3Q: 'Is my data secure?',
+          faq3A: 'Absolutely. We use AES-GCM encryption to protect all your data. Your information is stored securely in the cloud with automatic backups.',
+          faq4Q: 'Does it work offline?',
+          faq4A: 'Yes. Standard Sales Manager works in offline mode. When you regain connection, your data will sync automatically.',
+          faq5Q: 'Can I use my logo on quotes?',
+          faq5A: 'Yes, in all paid plans you can include your corporate logo on PDF quotes to reinforce your brand image.',
+          faq6Q: 'What languages is it available in?',
+          faq6A: 'Standard Sales Manager is available in 4 languages: Spanish, English, Portuguese (Brazil) and French. You can switch languages at any time.',
+          aboutLabel: 'THE COMPANY',
+          aboutTitle: 'Standard Labs SpA',
+          aboutDesc: 'We develop accessible business management tools for SMEs and entrepreneurs. Practical technology, without unnecessary complexity.',
+          aboutValue1Title: 'Simplicity',
+          aboutValue1Desc: 'We believe useful software is one that doesn\'t need a manual. If it\'s hard to use, it\'s poorly designed.',
+          aboutValue2Title: 'Data with Purpose',
+          aboutValue2Desc: 'Every metric we show has a purpose: help you make better business decisions without complicating your operation.',
+          aboutValue3Title: 'Made in Chile',
+          aboutValue3Desc: 'Developed by entrepreneurs for entrepreneurs. We understand SME reality because we live it.',
+          ctaLabel: 'START TODAY',
+          ctaTitle: 'Ready to take<br><span class="text--accent" data-i18n="ctaTitleAccent">control of your sales?</span>',
+          ctaTitleAccent: 'control of your sales?',
+          ctaDesc: 'Try Standard Sales Manager free for 20 days. No credit card, no commitment, all features included.',
+          formSubmit: 'SEND MESSAGE',
+          formNote: 'We\'ll respond within 24 hours',
+          footerDesc: 'Quotation management software<br>for SMEs and entrepreneurs.',
+          footerColProducto: 'Product',
+          footerColEmpresa: 'Company',
+          footerColLegal: 'Legal',
+          footerColIdioma: 'Language',
+          footerLinkCaracteristicas: 'Features',
+          footerLinkFuncionalidades: 'Capabilities',
+          footerLinkPrecios: 'Pricing',
+          footerLinkDescargar: 'Download',
+          footerLinkAnalytics: 'Analytics',
+          footerLinkNosotros: 'About Us',
+          footerLinkContacto: 'Contact',
+          footerLinkFaq: 'FAQ',
+          footerLinkTerminos: 'Terms of Service',
+          footerLinkPrivacidad: 'Privacy Policy',
+          footerRights: 'All rights reserved.'
+        },
+        pt: {
+          navTagline: 'Cota \u00b7 Controla \u00b7 Converte',
+          navProducto: 'Produto',
+          navPrecios: 'Precos',
+          navFuncionalidades: 'Funcionalidades',
+          navDescargar: 'Baixar',
+          navContacto: 'Contato',
+          navCta: 'Comece Gratis',
+          heroBadge: 'GESTAO COMERCIAL PARA PMES',
+          heroTitle: 'SUAS COTACOES<br><span class="hero__title--accent" data-i18n="heroTitleAccent">SOB CONTROLE.</span>',
+          heroTitleAccent: 'SOB CONTROLE.',
+          heroSubtitle: 'Standard Sales Manager e o software de gestao de cotacoes projetado para pequenas empresas e empreendedores. Sem complicacoes. Sem curva de aprendizado. Com resultados.',
+          heroCta: 'COMECE GRATIS 20 DIAS',
+          heroCtaSecondary: 'VER PRECOS',
+          heroNoCard: 'Sem cartao de credito \u00b7 Sem compromisso',
+          heroStat1: 'Para criar uma cotacao',
+          heroStat2: 'Exportacao profissional',
+          heroStat3: 'Metricas em tempo real',
+          trustStat1: 'para criar cotacao',
+          trustStat2: 'exportacao profissional',
+          trustStat3: 'idiomas disponiveis',
+          trustStat4: 'dados criptografados',
+          problemBadTitle: 'Sem Standard Sales Manager',
+          problemBad1: 'Cotacoes em Excel ou Word sem formato profissional',
+          problemBad2: 'Voce nao sabe quantas cotacoes emitiu este mes',
+          problemBad3: 'Nao tem ideia da sua taxa de conversao em vendas',
+          problemBad4: 'Perde o acompanhamento de clientes e empresas',
+          problemBad5: 'Numeracao manual com erros e duplicatas',
+          problemGoodTitle: 'Com Standard Sales Manager',
+          problemGood1: 'Cotacoes profissionais em PDF em 30 segundos',
+          problemGood2: 'Dashboard com metricas mensais e anuais',
+          problemGood3: 'Graficos de conversao: cotado vs faturado',
+          problemGood4: 'Base de contatos que se preenche sozinha',
+          problemGood5: 'Numeracao sequencial automatica sem erros',
+          productLabel: 'O PRODUTO',
+          productTitle: 'Simples por fora,<br><span class="text--accent" data-i18n="productTitleAccent">poderoso por dentro.</span>',
+          productTitleAccent: 'poderoso por dentro.',
+          productDesc: 'Nao e um CRM. Nao e um ERP. E exatamente o que voce precisa: cotar, controlar e converter.',
+          productCard1Title: 'Cotacoes Profissionais',
+          productCard1Desc: 'Crie cotacoes com seu logo, dados da empresa e formato profissional. Exporte para PDF com um clique.',
+          productCard2Title: 'Analytics de Vendas',
+          productCard2Desc: 'Graficos de conversao, ranking de clientes, sazonalidade, ticket medio e taxa de recompra.',
+          productCard3Title: 'Base de Contatos',
+          productCard3Desc: 'Cada vez que voce cota para um novo cliente, ele e adicionado automaticamente ao seu banco de dados.',
+          featuresLabel: 'FUNCIONALIDADES',
+          featuresTitle: 'Tudo que voce precisa,<br><span class="text--accent" data-i18n="featuresTitleAccent">nada que sobre.</span>',
+          featuresTitleAccent: 'nada que sobre.',
+          featuresDesc: 'Projetado para que voce emita sua primeira cotacao em menos de um minuto.',
+          feature1Title: 'Exportacao PDF',
+          feature1Desc: 'Um clique e sua cotacao tem formato profissional pronto para enviar.',
+          feature2Title: 'Metricas em Tempo Real',
+          feature2Desc: 'Dashboard com KPIs atualizados: emitidas, faturadas, pendentes, valores.',
+          feature3Title: 'Multiusuario',
+          feature3Desc: 'Trabalhe com sua equipe de diferentes PCs na mesma rede. Dados compartilhados.',
+          feature4Title: 'Versionamento',
+          feature4Desc: 'Edite cotacoes emitidas e gere versoes (.b, .c) sem perder historico.',
+          feature5Title: 'App Movel Sincronizado',
+          feature5Desc: 'Cote do seu celular com sincronizacao automatica. Android disponivel.',
+          feature6Title: '4 Idiomas',
+          feature6Desc: 'Interface em espanhol, ingles, portugues e frances. Alcance mais mercados.',
+          feature7Title: 'Alertas de Vencimento',
+          feature7Desc: 'Cotacoes vencidas aparecem como alerta. Descarte ou faca acompanhamento.',
+          feature8Title: 'Sua Marca, Seu Estilo',
+          feature8Desc: 'Logo, cores corporativas, slogan e multiplos layouts. Faca do seu jeito.',
+          feature9Title: 'Motivo de Perda',
+          feature9Desc: 'Registre por que nao fechou: preco, concorrencia, timing. Aprenda e melhore.',
+          featuresShowMore: 'Ver todas as funcionalidades',
+          pricingLabel: 'PRECOS',
+          pricingTitle: 'Planos simples,<br><span class="text--accent" data-i18n="pricingTitleAccent">sem surpresas.</span>',
+          pricingTitleAccent: 'sem surpresas.',
+          pricingDesc: 'Escolha o plano que se adapta a sua equipe. Mude ou cancele quando quiser.',
+          pricingMonthly: 'Mensal',
+          pricingYearly: '1 Ano',
+          pricingBiennial: '2 Anos',
+          pricingBasicName: 'BASICO',
+          pricingBasicUsers: '1-3 usuarios',
+          pricingPerMonth: '/mes',
+          pricingBillingYearly: 'Contrato anual',
+          pricingBasicF1: 'Cotacoes ilimitadas',
+          pricingBasicF2: 'PDF profissional',
+          pricingBasicF3: 'App movel',
+          pricingBasicF4: 'Contatos',
+          pricingBasicF5: 'Analytics basico',
+          pricingBasicF6: 'Logo proprio',
+          pricingCta: 'Comece Gratis',
+          pricingPopular: 'MAIS POPULAR',
+          pricingProName: 'PRO',
+          pricingProUsers: 'Ate 5 usuarios',
+          pricingProF1: 'Tudo do Basico',
+          pricingProF2: 'Ate 5 usuarios',
+          pricingProF3: 'Analytics avancado',
+          pricingProF4: 'Suporte prioritario',
+          pricingEliteName: 'ELITE',
+          pricingEliteUsers: 'Ate 15 usuarios',
+          pricingEliteF1: 'Tudo do Pro',
+          pricingEliteF2: 'Ate 15 usuarios',
+          pricingEliteF3: 'Analytics avancado',
+          pricingEliteF4: 'Suporte dedicado',
+          pricingGuarantee: 'Teste gratis de 20 dias uteis \u00b7 Sem cartao de credito \u00b7 Todas as funcionalidades',
+          downloadsLabel: 'BAIXAR',
+          downloadsTitle: 'Disponivel onde<br><span class="text--accent" data-i18n="downloadsTitleAccent">voce precisar.</span>',
+          downloadsTitleAccent: 'voce precisar.',
+          downloadWinTitle: 'Baixar para Windows',
+          downloadWinMeta: 'Versao 1.2.0 \u00b7 ~85 MB \u00b7 Windows 10+',
+          downloadWinBtn: 'Baixar .exe',
+          downloadAndroidTitle: 'Disponivel no Google Play',
+          downloadAndroidMeta: 'Android 8.0+ \u00b7 Sincronizacao automatica',
+          downloadAndroidBtn: 'Google Play',
+          downloadQrLabel: 'Codigo QR',
+          analyticsLabel: 'ANALYTICS',
+          analyticsTitle: 'Metricas que<br><span class="text--accent" data-i18n="analyticsTitleAccent">impulsionam decisoes.</span>',
+          analyticsTitleAccent: 'impulsionam decisoes.',
+          analyticsDesc: 'Voce nao precisa ser analista de dados. O Standard Sales Manager transforma sua atividade comercial em graficos claros.',
+          analyticsF1: 'Emitidas vs Faturadas \u2014 sua taxa de conversao real',
+          analyticsF2: 'Top clientes por volume cotado e faturado',
+          analyticsF3: 'Sazonalidade \u2014 compare meses e detecte tendencias',
+          analyticsF4: 'Ticket medio e taxa de recompra por empresa',
+          analyticsF5: 'Relatorios mensais e anuais exportaveis em PDF',
+          analyticsDemoLabel: 'Conversao 2026',
+          analyticsDemoFloat1: 'Faturado',
+          analyticsDemoFloat2: 'vs mes anterior',
+          audienceLabel: 'PARA QUEM E?',
+          audienceTitle: 'Projetado para quem<br><span class="text--accent" data-i18n="audienceTitleAccent">vende de verdade.</span>',
+          audienceTitleAccent: 'vende de verdade.',
+          audience1Title: 'Oficinas e Servicos Tecnicos',
+          audience1Desc: 'Cote pecas, mao de obra e servicos com formato profissional que gera confianca.',
+          audience2Title: 'Construtoras e Empreiteiros',
+          audience2Desc: 'Controle cotacoes por projeto, rastreie o que virou pedido e o que ficou pendente.',
+          audience3Title: 'Comercio e Distribuidoras',
+          audience3Desc: 'Emita cotacoes rapidas, acompanhe por cliente e meca seu desempenho comercial.',
+          audience4Title: 'Freelancers e Consultores',
+          audience4Desc: 'Cote seus servicos profissionalmente e acompanhe sua atividade comercial mes a mes.',
+          faqLabel: 'PERGUNTAS FREQUENTES',
+          faqTitle: 'Resolvemos suas<br><span class="text--accent" data-i18n="faqTitleAccent">duvidas rapido.</span>',
+          faqTitleAccent: 'duvidas rapido.',
+          faq1Q: 'Preciso de cartao de credito para o teste gratis?',
+          faq1A: 'Nao. O teste gratuito de 20 dias uteis nao requer cartao de credito nem compromisso.',
+          faq2Q: 'Posso cancelar a qualquer momento?',
+          faq2A: 'Sim, voce pode cancelar sua assinatura a qualquer momento sem penalidade.',
+          faq3Q: 'Meus dados estao seguros?',
+          faq3A: 'Absolutamente. Usamos criptografia AES-GCM para proteger todos os seus dados.',
+          faq4Q: 'Funciona sem internet?',
+          faq4A: 'Sim. O Standard Sales Manager funciona no modo offline com sincronizacao automatica.',
+          faq5Q: 'Posso usar meu logo nas cotacoes?',
+          faq5A: 'Sim, em todos os planos pagos voce pode incluir seu logo corporativo nas cotacoes PDF.',
+          faq6Q: 'Em quais idiomas esta disponivel?',
+          faq6A: 'Disponivel em 4 idiomas: Espanhol, Ingles, Portugues (Brasil) e Frances.',
+          aboutLabel: 'A EMPRESA',
+          aboutTitle: 'Standard Labs SpA',
+          aboutDesc: 'Desenvolvemos ferramentas de gestao empresarial acessiveis para PMEs e empreendedores.',
+          aboutValue1Title: 'Simplicidade',
+          aboutValue1Desc: 'Acreditamos que software util e aquele que nao precisa de manual.',
+          aboutValue2Title: 'Dados com Proposito',
+          aboutValue2Desc: 'Cada metrica que mostramos tem um proposito: ajuda-lo a tomar melhores decisoes comerciais.',
+          aboutValue3Title: 'Feito no Chile',
+          aboutValue3Desc: 'Desenvolvido por empreendedores para empreendedores. Entendemos a realidade das PMEs.',
+          ctaLabel: 'COMECE HOJE',
+          ctaTitle: 'Pronto para tomar o<br><span class="text--accent" data-i18n="ctaTitleAccent">controle das suas vendas?</span>',
+          ctaTitleAccent: 'controle das suas vendas?',
+          ctaDesc: 'Experimente o Standard Sales Manager gratis por 20 dias. Sem cartao, sem compromisso.',
+          formSubmit: 'ENVIAR MENSAGEM',
+          formNote: 'Responderemos em menos de 24 horas',
+          footerDesc: 'Software de gestao de cotacoes<br>para PMEs e empreendedores.',
+          footerColProducto: 'Produto',
+          footerColEmpresa: 'Empresa',
+          footerColLegal: 'Legal',
+          footerColIdioma: 'Idioma',
+          footerLinkCaracteristicas: 'Caracteristicas',
+          footerLinkFuncionalidades: 'Funcionalidades',
+          footerLinkPrecios: 'Precos',
+          footerLinkDescargar: 'Baixar',
+          footerLinkAnalytics: 'Analytics',
+          footerLinkNosotros: 'Sobre Nos',
+          footerLinkContacto: 'Contato',
+          footerLinkFaq: 'FAQ',
+          footerLinkTerminos: 'Termos de Servico',
+          footerLinkPrivacidad: 'Politica de Privacidade',
+          footerRights: 'Todos os direitos reservados.'
+        },
+        fr: {
+          navTagline: 'Devis \u00b7 Contr\u00f4le \u00b7 Convertit',
+          navProducto: 'Produit',
+          navPrecios: 'Tarifs',
+          navFuncionalidades: 'Fonctionnalites',
+          navDescargar: 'Telecharger',
+          navContacto: 'Contact',
+          navCta: 'Essai Gratuit',
+          heroBadge: 'GESTION COMMERCIALE POUR PME',
+          heroTitle: 'VOS DEVIS<br><span class="hero__title--accent" data-i18n="heroTitleAccent">SOUS CONTROLE.</span>',
+          heroTitleAccent: 'SOUS CONTROLE.',
+          heroSubtitle: 'Standard Sales Manager est le logiciel de gestion de devis concu pour les petites entreprises et les entrepreneurs. Sans complications. Sans courbe d\'apprentissage. Avec des resultats.',
+          heroCta: 'ESSAI GRATUIT 20 JOURS',
+          heroCtaSecondary: 'VOIR LES TARIFS',
+          heroNoCard: 'Sans carte de credit \u00b7 Sans engagement',
+          heroStat1: 'Pour creer un devis',
+          heroStat2: 'Export professionnel',
+          heroStat3: 'Metriques en temps reel',
+          trustStat1: 'pour creer un devis',
+          trustStat2: 'export professionnel',
+          trustStat3: 'langues disponibles',
+          trustStat4: 'donnees chiffrees',
+          problemBadTitle: 'Sans Standard Sales Manager',
+          problemBad1: 'Devis sur Excel ou Word sans format professionnel',
+          problemBad2: 'Vous ne savez pas combien de devis vous avez emis ce mois',
+          problemBad3: 'Vous n\'avez aucune idee de votre taux de conversion',
+          problemBad4: 'Vous perdez le suivi des clients et des entreprises',
+          problemBad5: 'Numerotation manuelle avec erreurs et doublons',
+          problemGoodTitle: 'Avec Standard Sales Manager',
+          problemGood1: 'Devis professionnels en PDF en 30 secondes',
+          problemGood2: 'Tableau de bord avec metriques mensuelles et annuelles',
+          problemGood3: 'Graphiques de conversion: devis vs facture',
+          problemGood4: 'Base de contacts qui se remplit automatiquement',
+          problemGood5: 'Numerotation sequentielle automatique sans erreurs',
+          productLabel: 'LE PRODUIT',
+          productTitle: 'Simple a l\'exterieur,<br><span class="text--accent" data-i18n="productTitleAccent">puissant a l\'interieur.</span>',
+          productTitleAccent: 'puissant a l\'interieur.',
+          productDesc: 'Pas un CRM. Pas un ERP. Exactement ce dont vous avez besoin.',
+          productCard1Title: 'Devis Professionnels',
+          productCard1Desc: 'Creez des devis avec votre logo et format professionnel. Exportez en PDF en un clic.',
+          productCard2Title: 'Analytics des Ventes',
+          productCard2Desc: 'Graphiques de conversion, classement clients, saisonnalite, ticket moyen et taux de rachat.',
+          productCard3Title: 'Base de Contacts',
+          productCard3Desc: 'Chaque nouveau client est automatiquement ajoute a votre base de donnees.',
+          featuresLabel: 'FONCTIONNALITES',
+          featuresTitle: 'Tout ce dont vous avez besoin,<br><span class="text--accent" data-i18n="featuresTitleAccent">rien de superflu.</span>',
+          featuresTitleAccent: 'rien de superflu.',
+          featuresDesc: 'Concu pour que vous emettiez votre premier devis en moins d\'une minute.',
+          feature1Title: 'Export PDF',
+          feature1Desc: 'Un clic et votre devis a un format professionnel pret a envoyer.',
+          feature2Title: 'Metriques en Direct',
+          feature2Desc: 'Tableau de bord avec KPIs actualises: emis, factures, en attente, montants.',
+          feature3Title: 'Multi-utilisateur',
+          feature3Desc: 'Travaillez avec votre equipe depuis differents PC sur le meme reseau.',
+          feature4Title: 'Versionnage',
+          feature4Desc: 'Modifiez des devis emis et generez des versions (.b, .c) sans perdre l\'historique.',
+          feature5Title: 'App Mobile Synchronisee',
+          feature5Desc: 'Creez des devis depuis votre telephone avec synchronisation automatique.',
+          feature6Title: '4 Langues',
+          feature6Desc: 'Interface en espagnol, anglais, portugais et francais.',
+          feature7Title: 'Alertes d\'Expiration',
+          feature7Desc: 'Les devis expires apparaissent comme alertes. Supprimez-les ou faites un suivi.',
+          feature8Title: 'Votre Marque, Votre Style',
+          feature8Desc: 'Logo, couleurs, slogan et multiples mises en page. Personnalisez-le.',
+          feature9Title: 'Raison de Perte',
+          feature9Desc: 'Enregistrez pourquoi vous n\'avez pas conclu: prix, concurrence, timing.',
+          featuresShowMore: 'Voir toutes les fonctionnalites',
+          pricingLabel: 'TARIFS',
+          pricingTitle: 'Plans simples,<br><span class="text--accent" data-i18n="pricingTitleAccent">sans surprises.</span>',
+          pricingTitleAccent: 'sans surprises.',
+          pricingDesc: 'Choisissez le plan adapte a votre equipe. Changez ou annulez quand vous voulez.',
+          pricingMonthly: 'Mensuel',
+          pricingYearly: '1 An',
+          pricingBiennial: '2 Ans',
+          pricingBasicName: 'BASIQUE',
+          pricingBasicUsers: '1-3 utilisateurs',
+          pricingPerMonth: '/mois',
+          pricingBillingYearly: 'Contrat annuel',
+          pricingBasicF1: 'Devis illimites',
+          pricingBasicF2: 'PDF professionnel',
+          pricingBasicF3: 'App mobile',
+          pricingBasicF4: 'Contacts',
+          pricingBasicF5: 'Analytics basique',
+          pricingBasicF6: 'Logo personnalise',
+          pricingCta: 'Essai Gratuit',
+          pricingPopular: 'LE PLUS POPULAIRE',
+          pricingProName: 'PRO',
+          pricingProUsers: 'Jusqu\'a 5 utilisateurs',
+          pricingProF1: 'Tout du Basique',
+          pricingProF2: 'Jusqu\'a 5 utilisateurs',
+          pricingProF3: 'Analytics avance',
+          pricingProF4: 'Support prioritaire',
+          pricingEliteName: 'ELITE',
+          pricingEliteUsers: 'Jusqu\'a 15 utilisateurs',
+          pricingEliteF1: 'Tout du Pro',
+          pricingEliteF2: 'Jusqu\'a 15 utilisateurs',
+          pricingEliteF3: 'Analytics avance',
+          pricingEliteF4: 'Support dedie',
+          pricingGuarantee: 'Essai gratuit de 20 jours ouvrables \u00b7 Sans carte de credit \u00b7 Toutes les fonctionnalites',
+          downloadsLabel: 'TELECHARGER',
+          downloadsTitle: 'Disponible ou<br><span class="text--accent" data-i18n="downloadsTitleAccent">vous en avez besoin.</span>',
+          downloadsTitleAccent: 'vous en avez besoin.',
+          downloadWinTitle: 'Telecharger pour Windows',
+          downloadWinMeta: 'Version 1.2.0 \u00b7 ~85 Mo \u00b7 Windows 10+',
+          downloadWinBtn: 'Telecharger .exe',
+          downloadAndroidTitle: 'Disponible sur Google Play',
+          downloadAndroidMeta: 'Android 8.0+ \u00b7 Synchronisation automatique',
+          downloadAndroidBtn: 'Google Play',
+          downloadQrLabel: 'Code QR',
+          analyticsLabel: 'ANALYTICS',
+          analyticsTitle: 'Des metriques qui<br><span class="text--accent" data-i18n="analyticsTitleAccent">guident les decisions.</span>',
+          analyticsTitleAccent: 'guident les decisions.',
+          analyticsDesc: 'Pas besoin d\'etre analyste de donnees. Standard Sales Manager transforme votre activite commerciale en graphiques clairs.',
+          analyticsF1: 'Emis vs Factures \u2014 votre taux de conversion reel',
+          analyticsF2: 'Top clients par volume de devis et facturation',
+          analyticsF3: 'Saisonnalite \u2014 comparez les mois et detectez les tendances',
+          analyticsF4: 'Ticket moyen et taux de rachat par entreprise',
+          analyticsF5: 'Rapports mensuels et annuels exportables en PDF',
+          analyticsDemoLabel: 'Conversion 2026',
+          analyticsDemoFloat1: 'Facture',
+          analyticsDemoFloat2: 'vs mois precedent',
+          audienceLabel: 'POUR QUI?',
+          audienceTitle: 'Concu pour ceux qui<br><span class="text--accent" data-i18n="audienceTitleAccent">vendent vraiment.</span>',
+          audienceTitleAccent: 'vendent vraiment.',
+          audience1Title: 'Ateliers et Services Techniques',
+          audience1Desc: 'Devis de pieces, main-d\'oeuvre et services avec un format professionnel.',
+          audience2Title: 'Construction et Entrepreneurs',
+          audience2Desc: 'Controlez les devis par projet, suivez ce qui est devenu commande.',
+          audience3Title: 'Commerce et Distributeurs',
+          audience3Desc: 'Emettez des devis rapides, suivez par client et mesurez votre performance.',
+          audience4Title: 'Freelances et Consultants',
+          audience4Desc: 'Facturez vos services professionnellement et suivez votre activite commerciale.',
+          faqLabel: 'FAQ',
+          faqTitle: 'Nous resolvons vos<br><span class="text--accent" data-i18n="faqTitleAccent">questions rapidement.</span>',
+          faqTitleAccent: 'questions rapidement.',
+          faq1Q: 'Ai-je besoin d\'une carte de credit pour l\'essai gratuit?',
+          faq1A: 'Non. L\'essai gratuit de 20 jours ouvrables ne necessite ni carte de credit ni engagement.',
+          faq2Q: 'Puis-je annuler a tout moment?',
+          faq2A: 'Oui, vous pouvez annuler votre abonnement a tout moment sans penalite.',
+          faq3Q: 'Mes donnees sont-elles securisees?',
+          faq3A: 'Absolument. Nous utilisons le chiffrement AES-GCM pour proteger toutes vos donnees.',
+          faq4Q: 'Fonctionne-t-il hors ligne?',
+          faq4A: 'Oui. Standard Sales Manager fonctionne en mode hors ligne avec synchronisation automatique.',
+          faq5Q: 'Puis-je utiliser mon logo sur les devis?',
+          faq5A: 'Oui, dans tous les plans payants vous pouvez inclure votre logo sur les devis PDF.',
+          faq6Q: 'En quelles langues est-il disponible?',
+          faq6A: 'Disponible en 4 langues: Espagnol, Anglais, Portugais (Bresil) et Francais.',
+          aboutLabel: 'L\'ENTREPRISE',
+          aboutTitle: 'Standard Labs SpA',
+          aboutDesc: 'Nous developpons des outils de gestion accessibles pour les PME et les entrepreneurs.',
+          aboutValue1Title: 'Simplicite',
+          aboutValue1Desc: 'Nous croyons qu\'un logiciel utile est celui qui n\'a pas besoin de manuel.',
+          aboutValue2Title: 'Donnees avec un But',
+          aboutValue2Desc: 'Chaque metrique que nous montrons a un but: vous aider a prendre de meilleures decisions.',
+          aboutValue3Title: 'Fait au Chili',
+          aboutValue3Desc: 'Developpe par des entrepreneurs pour des entrepreneurs.',
+          ctaLabel: 'COMMENCEZ AUJOURD\'HUI',
+          ctaTitle: 'Pret a prendre le<br><span class="text--accent" data-i18n="ctaTitleAccent">controle de vos ventes?</span>',
+          ctaTitleAccent: 'controle de vos ventes?',
+          ctaDesc: 'Essayez Standard Sales Manager gratuitement pendant 20 jours. Sans carte, sans engagement.',
+          formSubmit: 'ENVOYER LE MESSAGE',
+          formNote: 'Nous vous repondrons dans les 24 heures',
+          footerDesc: 'Logiciel de gestion de devis<br>pour PME et entrepreneurs.',
+          footerColProducto: 'Produit',
+          footerColEmpresa: 'Entreprise',
+          footerColLegal: 'Legal',
+          footerColIdioma: 'Langue',
+          footerLinkCaracteristicas: 'Caracteristiques',
+          footerLinkFuncionalidades: 'Fonctionnalites',
+          footerLinkPrecios: 'Tarifs',
+          footerLinkDescargar: 'Telecharger',
+          footerLinkAnalytics: 'Analytics',
+          footerLinkNosotros: 'A Propos',
+          footerLinkContacto: 'Contact',
+          footerLinkFaq: 'FAQ',
+          footerLinkTerminos: 'Conditions d\'Utilisation',
+          footerLinkPrivacidad: 'Politique de Confidentialite',
+          footerRights: 'Tous droits reserves.'
+        }
+      };
+
+      /* Spanish is the default in HTML, so no 'es' translations needed */
+      var spanishDefaults = {};
+
+      function setLanguage(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+        /* Update active state on all language buttons */
+        document.querySelectorAll('.nav__lang-btn').forEach(function(btn) {
+          btn.classList.toggle('nav__lang-btn--active', btn.getAttribute('data-lang') === lang);
+        });
+
+        if (lang === 'es') {
+          /* Reload page to restore Spanish defaults (simplest approach) */
+          location.reload();
+          return;
+        }
+
+        var t = translations[lang];
+        if (!t) return;
+
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) {
+            el.innerHTML = t[key];
+          }
+        });
+
+        /* Handle placeholder translations */
+        var placeholderMap = {
+          formName: { es: 'Tu nombre', en: 'Your name', pt: 'Seu nome', fr: 'Votre nom' },
+          formCompany: { es: 'Empresa', en: 'Company', pt: 'Empresa', fr: 'Entreprise' },
+          formEmail: { es: 'Email', en: 'Email', pt: 'Email', fr: 'Email' },
+          formPhone: { es: 'Telefono', en: 'Phone', pt: 'Telefone', fr: 'Telephone' },
+          formMessage: { es: 'Tu mensaje (opcional)', en: 'Your message (optional)', pt: 'Sua mensagem (opcional)', fr: 'Votre message (optionnel)' }
+        };
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n-placeholder');
+          if (placeholderMap[key] && placeholderMap[key][lang]) {
+            el.placeholder = placeholderMap[key][lang];
+          }
+        });
+      }
+
+      /* Attach click handlers to all language buttons */
+      document.querySelectorAll('.nav__lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          setLanguage(this.getAttribute('data-lang'));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
