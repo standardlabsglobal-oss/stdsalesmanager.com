@@ -633,8 +633,7 @@
             <span class="pricing__amount" data-price-monthly="10" data-price-yearly="7" data-price-biennial="5">$7</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
-          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$84 USD/año" data-total-biennial="$120 USD/2 años">$84 USD/año</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 30%" data-savings-biennial="Ahorra 50%">Ahorra 30%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingBasicF1">Cotizaciones ilimitadas</li>
@@ -658,8 +657,7 @@
             <span class="pricing__amount" data-price-monthly="15" data-price-yearly="10" data-price-biennial="8">$10</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
-          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$120 USD/año" data-total-biennial="$192 USD/2 años">$120 USD/año</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 33%" data-savings-biennial="Ahorra 47%">Ahorra 33%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingProF1">Todo en Basico</li>
@@ -680,8 +678,7 @@
             <span class="pricing__amount" data-price-monthly="20" data-price-yearly="15" data-price-biennial="13">$15</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
-          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$180 USD/año" data-total-biennial="$312 USD/2 años">$180 USD/año</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 25%" data-savings-biennial="Ahorra 35%">Ahorra 25%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingEliteF1">Todo en Pro</li>
@@ -1008,7 +1005,6 @@
       const amounts = document.querySelectorAll('.pricing__amount');
       const savings = document.querySelectorAll('.pricing__savings');
       const billingNotes = document.querySelectorAll('.pricing__billing-note');
-      const billingTotals = document.querySelectorAll('.pricing__billing-total');
 
       const billingLabelsAll = {
         es: { monthly: 'Facturación mensual', yearly: 'Pago único anual', biennial: 'Pago único por 2 años' },
@@ -1039,11 +1035,20 @@
           billingNotes.forEach(function(el) {
             el.textContent = billingLabels[period] || '';
           });
-          billingTotals.forEach(function(el) {
-            var totalText = el.getAttribute('data-total-' + period) || '';
-            el.textContent = totalText;
-            el.style.display = totalText ? 'block' : 'none';
+          document.querySelectorAll('.pricing__info').forEach(function(el) {
+            var tooltip = el.getAttribute('data-tooltip-' + period) || '';
+            el.setAttribute('data-tooltip', tooltip);
+            el.style.display = tooltip ? 'inline-block' : 'none';
           });
+        });
+      });
+      /* Init tooltips for default period (yearly) */
+      document.querySelectorAll('.pricing__info').forEach(function(el) {
+        el.setAttribute('data-tooltip', el.getAttribute('data-tooltip-yearly') || '');
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          this.classList.toggle('active');
+          setTimeout(function() { el.classList.remove('active'); }, 3000);
         });
       });
     })();
