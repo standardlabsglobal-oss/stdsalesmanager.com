@@ -639,7 +639,8 @@
             <span class="pricing__amount" data-price-monthly="10" data-price-yearly="7" data-price-biennial="5">$7</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
+          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$84 USD/año" data-total-biennial="$120 USD/2 años">$84 USD/año</p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 30%" data-savings-biennial="Ahorra 50%">Ahorra 30%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingBasicF1">Cotizaciones ilimitadas</li>
@@ -663,7 +664,8 @@
             <span class="pricing__amount" data-price-monthly="15" data-price-yearly="10" data-price-biennial="8">$10</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
+          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$120 USD/año" data-total-biennial="$192 USD/2 años">$120 USD/año</p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 33%" data-savings-biennial="Ahorra 47%">Ahorra 33%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingProF1">Todo en Basico</li>
@@ -684,7 +686,8 @@
             <span class="pricing__amount" data-price-monthly="20" data-price-yearly="15" data-price-biennial="13">$15</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Contrato anual</p>
+          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual</p>
+          <p class="pricing__billing-total" data-total-monthly="" data-total-yearly="$180 USD/año" data-total-biennial="$312 USD/2 años">$180 USD/año</p>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 25%" data-savings-biennial="Ahorra 35%">Ahorra 25%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingEliteF1">Todo en Pro</li>
@@ -1016,12 +1019,15 @@
       const amounts = document.querySelectorAll('.pricing__amount');
       const savings = document.querySelectorAll('.pricing__savings');
       const billingNotes = document.querySelectorAll('.pricing__billing-note');
+      const billingTotals = document.querySelectorAll('.pricing__billing-total');
 
-      const billingLabels = {
-        monthly: 'Facturacion mensual',
-        yearly: 'Contrato anual',
-        biennial: 'Contrato 2 anos'
+      const billingLabelsAll = {
+        es: { monthly: 'Facturación mensual', yearly: 'Pago único anual', biennial: 'Pago único por 2 años' },
+        en: { monthly: 'Monthly billing', yearly: 'Single annual payment', biennial: 'Single 2-year payment' },
+        pt: { monthly: 'Faturação mensal', yearly: 'Pagamento único anual', biennial: 'Pagamento único por 2 anos' },
+        fr: { monthly: 'Facturation mensuelle', yearly: 'Paiement unique annuel', biennial: 'Paiement unique sur 2 ans' }
       };
+      var billingLabels = billingLabelsAll.es;
 
       toggleBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -1043,6 +1049,11 @@
           });
           billingNotes.forEach(function(el) {
             el.textContent = billingLabels[period] || '';
+          });
+          billingTotals.forEach(function(el) {
+            var totalText = el.getAttribute('data-total-' + period) || '';
+            el.textContent = totalText;
+            el.style.display = totalText ? 'block' : 'none';
           });
         });
       });
@@ -1731,6 +1742,18 @@
             el.placeholder = placeholderMap[key][lang];
           }
         });
+
+        /* Update billing labels for current period */
+        if (typeof billingLabelsAll !== 'undefined') {
+          billingLabels = billingLabelsAll[lang] || billingLabelsAll.es;
+          var activeToggle = document.querySelector('.pricing__toggle-btn--active');
+          if (activeToggle) {
+            var period = activeToggle.getAttribute('data-period');
+            document.querySelectorAll('.pricing__billing-note').forEach(function(el) {
+              el.textContent = billingLabels[period] || '';
+            });
+          }
+        }
       }
 
       /* Attach click handlers to all language buttons */
