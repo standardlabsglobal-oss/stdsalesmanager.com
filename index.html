@@ -633,7 +633,7 @@
             <span class="pricing__amount" data-price-monthly="10" data-price-yearly="7" data-price-biennial="5">$7</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
+          <span class="pricing__info">ⓘ</span>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 30%" data-savings-biennial="Ahorra 50%">Ahorra 30%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingBasicF1">Cotizaciones ilimitadas</li>
@@ -657,7 +657,7 @@
             <span class="pricing__amount" data-price-monthly="15" data-price-yearly="10" data-price-biennial="8">$10</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
+          <span class="pricing__info">ⓘ</span>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 33%" data-savings-biennial="Ahorra 47%">Ahorra 33%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingProF1">Todo en Basico</li>
@@ -678,7 +678,7 @@
             <span class="pricing__amount" data-price-monthly="20" data-price-yearly="15" data-price-biennial="13">$15</span>
             <span class="pricing__period" data-i18n="pricingPerMonth">/mes</span>
           </div>
-          <p class="pricing__billing-note" data-i18n="pricingBillingYearly">Pago único anual <span class="pricing__info" data-tooltip-yearly="Se paga el año completo en un solo cobro." data-tooltip-biennial="Se pagan los 2 años completos en un solo cobro." data-tooltip-monthly="">ⓘ</span></p>
+          <span class="pricing__info">ⓘ</span>
           <p class="pricing__savings" data-savings-monthly="" data-savings-yearly="Ahorra 25%" data-savings-biennial="Ahorra 35%">Ahorra 25%</p>
           <ul class="pricing__features">
             <li data-i18n="pricingEliteF1">Todo en Pro</li>
@@ -1005,6 +1005,7 @@
       const amounts = document.querySelectorAll('.pricing__amount');
       const savings = document.querySelectorAll('.pricing__savings');
       const billingNotes = document.querySelectorAll('.pricing__billing-note');
+      const infoIcons = document.querySelectorAll('.pricing__info');
 
       const billingLabelsAll = {
         es: { monthly: 'Facturación mensual', yearly: 'Pago único anual', biennial: 'Pago único por 2 años' },
@@ -1012,7 +1013,14 @@
         pt: { monthly: 'Faturação mensal', yearly: 'Pagamento único anual', biennial: 'Pagamento único por 2 anos' },
         fr: { monthly: 'Facturation mensuelle', yearly: 'Paiement unique annuel', biennial: 'Paiement unique sur 2 ans' }
       };
+      const tooltipAll = {
+        es: { yearly: 'Se paga el año completo en un solo cobro.', biennial: 'Se pagan los 2 años completos en un solo cobro.' },
+        en: { yearly: 'The full year is paid in a single charge.', biennial: 'The full 2 years are paid in a single charge.' },
+        pt: { yearly: 'O ano completo é pago em uma única cobrança.', biennial: 'Os 2 anos completos são pagos em uma única cobrança.' },
+        fr: { yearly: 'L\'année complète est payée en un seul paiement.', biennial: 'Les 2 années complètes sont payées en un seul paiement.' }
+      };
       var billingLabels = billingLabelsAll.es;
+      var tooltips = tooltipAll.es;
 
       toggleBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -1035,20 +1043,32 @@
           billingNotes.forEach(function(el) {
             el.textContent = billingLabels[period] || '';
           });
-          document.querySelectorAll('.pricing__info').forEach(function(el) {
-            var tooltip = el.getAttribute('data-tooltip-' + period) || '';
-            el.setAttribute('data-tooltip', tooltip);
-            el.style.display = tooltip ? 'inline-block' : 'none';
+          infoIcons.forEach(function(el) {
+            var tip = tooltips[period] || '';
+            el.setAttribute('data-tooltip', tip);
+            el.style.display = tip ? 'inline-block' : 'none';
           });
         });
       });
-      /* Init tooltips for default period (yearly) */
-      document.querySelectorAll('.pricing__info').forEach(function(el) {
-        el.setAttribute('data-tooltip', el.getAttribute('data-tooltip-yearly') || '');
+      /* Init billing notes + tooltips for default period (yearly) */
+      function updatePricingUI(period) {
+        billingNotes.forEach(function(el) {
+          el.textContent = billingLabels[period] || '';
+        });
+        infoIcons.forEach(function(el) {
+          var tip = tooltips[period] || '';
+          el.setAttribute('data-tooltip', tip);
+          el.style.display = tip ? 'inline-block' : 'none';
+        });
+      }
+      updatePricingUI('yearly');
+
+      infoIcons.forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.stopPropagation();
           this.classList.toggle('active');
-          setTimeout(function() { el.classList.remove('active'); }, 3000);
+          var self = this;
+          setTimeout(function() { self.classList.remove('active'); }, 3000);
         });
       });
     })();
@@ -1737,15 +1757,13 @@
           }
         });
 
-        /* Update billing labels for current period */
+        /* Update billing labels + tooltips for current period */
         if (typeof billingLabelsAll !== 'undefined') {
           billingLabels = billingLabelsAll[lang] || billingLabelsAll.es;
+          tooltips = tooltipAll[lang] || tooltipAll.es;
           var activeToggle = document.querySelector('.pricing__toggle-btn--active');
           if (activeToggle) {
-            var period = activeToggle.getAttribute('data-period');
-            document.querySelectorAll('.pricing__billing-note').forEach(function(el) {
-              el.textContent = billingLabels[period] || '';
-            });
+            updatePricingUI(activeToggle.getAttribute('data-period'));
           }
         }
       }
