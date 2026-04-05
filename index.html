@@ -71,12 +71,16 @@
         <li><a href="#pricing" data-i18n="navPrecios">Precios</a></li>
         <li><a href="#funcionalidades" data-i18n="navFuncionalidades">Funcionalidades</a></li>
         <li><a href="#descargar" data-i18n="navDescargar">Descargar</a></li>
+        <li><a href="#tutoriales" data-i18n="navTutoriales">Tutoriales</a></li>
         <li><a href="#descargar" class="nav__cta" data-i18n="navCta">Empieza Gratis</a></li>
-        <li class="nav__lang" aria-label="Selector de idioma">
-          <button class="nav__lang-btn nav__lang-btn--active" data-lang="es" aria-label="Espanol" title="Espanol">&#127466;&#127480;</button>
-          <button class="nav__lang-btn" data-lang="en" aria-label="English" title="English">&#127482;&#127480;</button>
-          <button class="nav__lang-btn" data-lang="pt" aria-label="Portugues" title="Portugues">&#127463;&#127479;</button>
-          <button class="nav__lang-btn" data-lang="fr" aria-label="Francais" title="Francais">&#127467;&#127479;</button>
+        <li class="nav__lang-dropdown" aria-label="Selector de idioma">
+          <button class="nav__lang-trigger" data-i18n="navIdioma">Idioma ▾</button>
+          <div class="nav__lang-menu">
+            <button class="nav__lang-btn nav__lang-btn--active" data-lang="es" aria-label="Espanol">&#127466;&#127480; Español</button>
+            <button class="nav__lang-btn" data-lang="en" aria-label="English">&#127482;&#127480; English</button>
+            <button class="nav__lang-btn" data-lang="pt" aria-label="Portugues">&#127463;&#127479; Português</button>
+            <button class="nav__lang-btn" data-lang="fr" aria-label="Francais">&#127467;&#127479; Français</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -95,7 +99,7 @@
         </div>
         <h1 class="hero__title">
           <span data-i18n="heroTitle">TUS COTIZACIONES</span><br>
-          <span class="hero__title--accent" data-i18n="heroTitleAccent">BAJO CONTROL.</span>
+          <span class="hero__title--accent" data-i18n="heroTitleAccent">EN LA PALMA DE TU MANO.</span>
         </h1>
         <p class="hero__subtitle" data-i18n="heroSubtitle">
           Standard Sales Manager es el software de gestion de cotizaciones disenado para pequenas empresas y emprendedores. Sin complicaciones. Sin curva de aprendizaje. Con resultados.
@@ -919,6 +923,51 @@
   </section>
 
   <!-- ============================================
+       TUTORIALES
+       ============================================ -->
+  <section class="section tutorials" id="tutoriales">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label" data-i18n="tutorialsLabel">APRENDE EN MINUTOS</span>
+        <h2 class="section__title"><span data-i18n="tutorialsTitle">Tutoriales</span> <span class="text--accent" data-i18n="tutorialsTitleAccent">paso a paso</span></h2>
+        <p class="section__desc" data-i18n="tutorialsDesc">Aprende a usar Standard Sales Manager con estos tutoriales animados. Sin videos largos, directo al grano.</p>
+      </div>
+      <div class="tutorials__grid">
+        <a href="videos/tutorial1-instalacion.html" target="_blank" class="tutorial-card">
+          <div class="tutorial-card__icon">&#9881;</div>
+          <h4 class="tutorial-card__title" data-i18n="tutorial1Title">Instalacion y Configuracion</h4>
+          <p class="tutorial-card__desc" data-i18n="tutorial1Desc">Descarga, instala y configura tu empresa en minutos.</p>
+          <span class="tutorial-card__duration">25s</span>
+        </a>
+        <a href="videos/tutorial2-equipo.html" target="_blank" class="tutorial-card">
+          <div class="tutorial-card__icon">&#128101;</div>
+          <h4 class="tutorial-card__title" data-i18n="tutorial2Title">Crear Miembros del Equipo</h4>
+          <p class="tutorial-card__desc" data-i18n="tutorial2Desc">Agrega vendedores y asigna roles a tu equipo comercial.</p>
+          <span class="tutorial-card__duration">20s</span>
+        </a>
+        <a href="videos/tutorial3-cotizacion.html" target="_blank" class="tutorial-card">
+          <div class="tutorial-card__icon">&#128196;</div>
+          <h4 class="tutorial-card__title" data-i18n="tutorial3Title">Crear una Cotizacion</h4>
+          <p class="tutorial-card__desc" data-i18n="tutorial3Desc">Desde el formulario hasta el PDF listo para enviar.</p>
+          <span class="tutorial-card__duration">30s</span>
+        </a>
+        <a href="videos/tutorial4-editar.html" target="_blank" class="tutorial-card">
+          <div class="tutorial-card__icon">&#9999;</div>
+          <h4 class="tutorial-card__title" data-i18n="tutorial4Title">Editar, Derivar y Duplicar</h4>
+          <p class="tutorial-card__desc" data-i18n="tutorial4Desc">Versiones derivadas, edicion con clave admin y duplicados.</p>
+          <span class="tutorial-card__duration">30s</span>
+        </a>
+        <a href="videos/tutorial5-eliminar.html" target="_blank" class="tutorial-card">
+          <div class="tutorial-card__icon">&#128465;</div>
+          <h4 class="tutorial-card__title" data-i18n="tutorial5Title">Eliminar una Cotizacion</h4>
+          <p class="tutorial-card__desc" data-i18n="tutorial5Desc">Como eliminar borradores y cotizaciones emitidas.</p>
+          <span class="tutorial-card__duration">20s</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        CTA / CONTACTO
        ============================================ -->
   <section class="section cta-section" id="contacto">
@@ -1126,11 +1175,13 @@
           navPrecios: 'Pricing',
           navFuncionalidades: 'Features',
           navDescargar: 'Download',
+          navTutoriales: 'Tutorials',
+          navIdioma: 'Language ▾',
           navContacto: 'Contact',
           navCta: 'Start Free',
           heroBadge: 'SALES MANAGEMENT FOR SMES',
           heroTitle: 'YOUR QUOTES',
-          heroTitleAccent: 'UNDER CONTROL.',
+          heroTitleAccent: 'IN THE PALM OF YOUR HAND.',
           heroSubtitle: 'Standard Sales Manager is the quotation management software designed for small businesses and entrepreneurs. No complications. No learning curve. Results.',
           heroCta: 'START FREE 20 DAYS',
           heroCtaSecondary: 'SEE PRICING',
@@ -1294,6 +1345,20 @@
           aboutValue2Desc: 'Every metric we show has a purpose: help you make better business decisions without complicating your operation.',
           aboutValue3Title: 'Made in Chile',
           aboutValue3Desc: 'Developed by entrepreneurs for entrepreneurs. We understand SME reality because we live it.',
+          tutorialsLabel: 'LEARN IN MINUTES',
+          tutorialsTitle: 'Step-by-step',
+          tutorialsTitleAccent: 'tutorials',
+          tutorialsDesc: 'Learn to use Standard Sales Manager with these animated tutorials. No long videos, straight to the point.',
+          tutorial1Title: 'Installation & Setup',
+          tutorial1Desc: 'Download, install and configure your company in minutes.',
+          tutorial2Title: 'Create Team Members',
+          tutorial2Desc: 'Add salespeople and assign roles to your sales team.',
+          tutorial3Title: 'Create a Quotation',
+          tutorial3Desc: 'From the form to the PDF ready to send.',
+          tutorial4Title: 'Edit, Derive & Duplicate',
+          tutorial4Desc: 'Derived versions, admin key editing and duplicates.',
+          tutorial5Title: 'Delete a Quotation',
+          tutorial5Desc: 'How to delete drafts and issued quotations.',
           ctaLabel: 'START TODAY',
           ctaTitle: 'Ready to take',
           ctaTitleAccent: 'control of your sales?',
@@ -1323,11 +1388,13 @@
           navPrecios: 'Precos',
           navFuncionalidades: 'Funcionalidades',
           navDescargar: 'Baixar',
+          navTutoriales: 'Tutoriais',
+          navIdioma: 'Idioma ▾',
           navContacto: 'Contato',
           navCta: 'Comece Gratis',
           heroBadge: 'GESTAO COMERCIAL PARA PMES',
           heroTitle: 'SUAS COTAÇÕES',
-          heroTitleAccent: 'SOB CONTROLE.',
+          heroTitleAccent: 'NA PALMA DA SUA MÃO.',
           heroSubtitle: 'Standard Sales Manager e o software de gestao de cotacoes projetado para pequenas empresas e empreendedores. Sem complicacoes. Sem curva de aprendizado. Com resultados.',
           heroCta: 'COMECE GRATIS 20 DIAS',
           heroCtaSecondary: 'VER PRECOS',
@@ -1491,6 +1558,20 @@
           aboutValue2Desc: 'Cada metrica que mostramos tem um proposito: ajuda-lo a tomar melhores decisoes comerciais.',
           aboutValue3Title: 'Feito no Chile',
           aboutValue3Desc: 'Desenvolvido por empreendedores para empreendedores. Entendemos a realidade das PMEs.',
+          tutorialsLabel: 'APRENDA EM MINUTOS',
+          tutorialsTitle: 'Tutoriais',
+          tutorialsTitleAccent: 'passo a passo',
+          tutorialsDesc: 'Aprenda a usar o Standard Sales Manager com estes tutoriais animados. Sem videos longos, direto ao ponto.',
+          tutorial1Title: 'Instalacao e Configuracao',
+          tutorial1Desc: 'Baixe, instale e configure sua empresa em minutos.',
+          tutorial2Title: 'Criar Membros da Equipe',
+          tutorial2Desc: 'Adicione vendedores e atribua funcoes a sua equipe comercial.',
+          tutorial3Title: 'Criar uma Cotacao',
+          tutorial3Desc: 'Do formulario ao PDF pronto para enviar.',
+          tutorial4Title: 'Editar, Derivar e Duplicar',
+          tutorial4Desc: 'Versoes derivadas, edicao com chave admin e duplicatas.',
+          tutorial5Title: 'Excluir uma Cotacao',
+          tutorial5Desc: 'Como excluir rascunhos e cotacoes emitidas.',
           ctaLabel: 'COMECE HOJE',
           ctaTitle: 'Pronto para tomar o',
           ctaTitleAccent: 'controle das suas vendas?',
@@ -1520,11 +1601,13 @@
           navPrecios: 'Tarifs',
           navFuncionalidades: 'Fonctionnalites',
           navDescargar: 'Telecharger',
+          navTutoriales: 'Tutoriels',
+          navIdioma: 'Langue ▾',
           navContacto: 'Contact',
           navCta: 'Essai Gratuit',
           heroBadge: 'GESTION COMMERCIALE POUR PME',
           heroTitle: 'VOS DEVIS',
-          heroTitleAccent: 'SOUS CONTROLE.',
+          heroTitleAccent: 'AU CREUX DE VOTRE MAIN.',
           heroSubtitle: 'Standard Sales Manager est le logiciel de gestion de devis concu pour les petites entreprises et les entrepreneurs. Sans complications. Sans courbe d\'apprentissage. Avec des resultats.',
           heroCta: 'ESSAI GRATUIT 20 JOURS',
           heroCtaSecondary: 'VOIR LES TARIFS',
@@ -1688,6 +1771,20 @@
           aboutValue2Desc: 'Chaque metrique que nous montrons a un but: vous aider a prendre de meilleures decisions.',
           aboutValue3Title: 'Fait au Chili',
           aboutValue3Desc: 'Developpe par des entrepreneurs pour des entrepreneurs.',
+          tutorialsLabel: 'APPRENEZ EN MINUTES',
+          tutorialsTitle: 'Tutoriels',
+          tutorialsTitleAccent: 'pas a pas',
+          tutorialsDesc: 'Apprenez a utiliser Standard Sales Manager avec ces tutoriels animes. Pas de longues videos, droit au but.',
+          tutorial1Title: 'Installation et Configuration',
+          tutorial1Desc: 'Telechargez, installez et configurez votre entreprise en minutes.',
+          tutorial2Title: 'Creer des Membres d\'equipe',
+          tutorial2Desc: 'Ajoutez des vendeurs et attribuez des roles a votre equipe.',
+          tutorial3Title: 'Creer un Devis',
+          tutorial3Desc: 'Du formulaire au PDF pret a envoyer.',
+          tutorial4Title: 'Modifier, Deriver et Dupliquer',
+          tutorial4Desc: 'Versions derivees, edition avec cle admin et doublons.',
+          tutorial5Title: 'Supprimer un Devis',
+          tutorial5Desc: 'Comment supprimer des brouillons et devis emis.',
           ctaLabel: 'COMMENCEZ AUJOURD\'HUI',
           ctaTitle: 'Prêt à prendre le',
           ctaTitleAccent: 'controle de vos ventes?',
@@ -1772,6 +1869,39 @@
       document.querySelectorAll('.nav__lang-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           setLanguage(this.getAttribute('data-lang'));
+          /* Close dropdown after selection */
+          var dropdown = this.closest('.nav__lang-dropdown');
+          if (dropdown) dropdown.classList.remove('open');
+        });
+      });
+
+      /* Language dropdown toggle */
+      var langTriggers = document.querySelectorAll('.nav__lang-trigger');
+      langTriggers.forEach(function(trigger) {
+        trigger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var dropdown = this.closest('.nav__lang-dropdown');
+          dropdown.classList.toggle('open');
+        });
+      });
+
+      /* Close dropdown when clicking outside */
+      document.addEventListener('click', function() {
+        document.querySelectorAll('.nav__lang-dropdown.open').forEach(function(d) {
+          d.classList.remove('open');
+        });
+      });
+
+      /* Update trigger label on language change */
+      var triggerLabels = { es: 'Idioma ▾', en: 'Language ▾', pt: 'Idioma ▾', fr: 'Langue ▾' };
+      var origSetLang = setLanguage;
+      // Patch: update trigger text after language switch
+      document.querySelectorAll('.nav__lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var lang = this.getAttribute('data-lang');
+          document.querySelectorAll('.nav__lang-trigger').forEach(function(t) {
+            t.textContent = triggerLabels[lang] || 'Idioma ▾';
+          });
         });
       });
     })();

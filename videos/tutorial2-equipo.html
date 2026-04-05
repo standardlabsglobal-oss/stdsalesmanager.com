@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial 2 — Cómo Crear Miembros del Equipo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    .video-frame {
+      width: 1920px;
+      height: 1080px;
+      transform: scale(0.52);
+      transform-origin: center center;
+      background: #0a0c14;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .video-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(220, 15%, 20%, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(220, 15%, 20%, 0.1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .glow {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, hsla(210, 80%, 55%, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Progress bar */
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4d9de6, #52b788);
+      z-index: 50;
+      width: 0%;
+      animation: progressBar 20s 0s linear forwards;
+    }
+
+    @keyframes progressBar { to { width: 100%; } }
+
+    /* ============================================
+       SCENES
+       ============================================ */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 100px;
+      opacity: 0;
+    }
+
+    /* ============================================
+       SCENE 1: Title (0-3s)
+       ============================================ */
+    .scene-1 {
+      flex-direction: column;
+      animation: fadeIn 0.6s 0.3s forwards, fadeOut 0.5s 2.5s forwards;
+    }
+
+    .scene-1 h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 78px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeInUp 0.6s 0.6s forwards;
+    }
+
+    .scene-1 .subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      color: #4d9de6;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeInUp 0.6s 1.2s forwards;
+    }
+
+    /* ============================================
+       EXE APP MOCKUP (shared across scenes 2-5)
+       ============================================ */
+    .exe-app {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* --- EXE Header Bar --- */
+    .exe-header {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      border-bottom: 1px solid hsla(220, 40%, 30%, 0.4);
+    }
+
+    .exe-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 6px;
+    }
+
+    .exe-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #4d9de6, #3a7bc8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .exe-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .exe-logo-company {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .exe-logo-desc {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 10px;
+      color: hsla(0, 0%, 100%, 0.55);
+      letter-spacing: 0.02em;
+    }
+
+    .exe-header-sep {
+      width: 1px;
+      height: 32px;
+      background: hsla(0, 0%, 100%, 0.12);
+      margin: 0 4px;
+    }
+
+    .exe-header-btn {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: hsla(0, 0%, 100%, 0.8);
+      padding: 7px 14px;
+      border-radius: 6px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .exe-header-btn:hover {
+      background: hsla(0, 0%, 100%, 0.08);
+    }
+
+    .exe-header-btn.active-btn {
+      background: hsla(210, 80%, 55%, 0.25);
+      color: #ffffff;
+    }
+
+    .exe-header-btn.primary-btn {
+      background: #4d9de6;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+
+    .exe-header-spacer {
+      flex: 1;
+    }
+
+    /* --- EXE Body --- */
+    .exe-body {
+      flex: 1;
+      background: #f0f2f5;
+      padding: 32px 48px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* --- White card --- */
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 28px 32px;
+    }
+
+    .card-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* --- Team table --- */
+    .team-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .team-table thead th {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8a8d94;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid #e8eaed;
+    }
+
+    .team-table tbody td {
+      font-size: 14px;
+      color: #2d2f36;
+      padding: 14px 14px;
+      border-bottom: 1px solid #f0f1f3;
+      vertical-align: middle;
+    }
+
+    .team-table .name-cell {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .team-table .email-cell {
+      color: #5a5d66;
+    }
+
+    .team-table .cargo-cell {
+      color: #5a5d66;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .role-admin {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .role-miembro {
+      background: #e6f7ed;
+      color: #1e8e3e;
+    }
+
+    .key-cell {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      color: #8a8d94;
+      letter-spacing: 0.04em;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    .action-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #5a5d66;
+    }
+
+    .btn-add-team {
+      padding: 8px 18px;
+      background: #4d9de6;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+    }
+
+    .btn-add-team .plus { font-size: 16px; font-weight: 700; }
+
+    /* ============================================
+       SCENE 2: Navigate to Equipo (3-9s)
+       ============================================ */
+    .scene-2 {
+      padding: 40px 80px;
+      flex-direction: column;
+      align-items: stretch;
+      animation: fadeIn 0.5s 3.2s forwards, fadeOut 0.5s 8.5s forwards;
+    }
+
+    .scene-2 .step-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: #4d9de6;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInUp 0.4s 3.5s forwards;
+    }
+
+    .scene-2 .exe-app {
+      opacity: 0;
+      animation: fadeInUp 0.5s 3.8s forwards;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid hsla(220, 20%, 25%, 0.3);
+      flex: 1;
+    }
+
+    /* Equipo button highlight pulse */
+    .scene-2 .equipo-btn {
+      animation: pulseEquipo 0.6s 5.2s forwards;
+    }
+
+    @keyframes pulseEquipo {
+      0% { background: transparent; }
+      50% { background: hsla(210, 80%, 55%, 0.4); }
+      100% { background: hsla(210, 80%, 55%, 0.25); color: #ffffff; }
+    }
+
+    /* Click ring effect */
+    .click-ring {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #4d9de6;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    .scene-2 .click-ring {
+      top: 57px;
+      right: 460px;
+      animation: clickRing 0.5s 5.1s forwards;
+    }
+
+    @keyframes clickRing {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+
+    /* Card appear after click */
+    .scene-2 .team-card-area {
+      opacity: 0;
+      animation: fadeInUp 0.4s 5.8s forwards;
+    }
+
+    /* Animated cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      z-index: 30;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .cursor svg {
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    .scene-2 .cursor {
+      top: 400px;
+      left: 700px;
+      animation:
+        fadeIn 0.3s 4s forwards,
+        moveCursorToEquipo 1s 4.3s forwards,
+        cursorClick 0.2s 5.1s forwards;
+    }
+
+    @keyframes moveCursorToEquipo {
+      0% { top: 400px; left: 700px; }
+      100% { top: 57px; right: 460px; left: auto; left: 1105px; top: 75px; }
+    }
+
+    @keyframes cursorClick {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.8); }
+      100% { transform: scale(1); }
+    }
+
+    /* ============================================
+       SCENE 3: Add new member (9-15s)
+       ============================================ */
+    .scene-3 {
+      padding: 40px 80px;
+      flex-direction: column;
+      align-items: stretch;
+      animation: fadeIn 0.5s 9.2s forwards, fadeOut 0.5s 14.5s forwards;
+    }
+
+    .scene-3 .step-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: #4d9de6;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInUp 0.4s 9.5s forwards;
+    }
+
+    .scene-3 .exe-app {
+      opacity: 0;
+      animation: fadeInUp 0.4s 9.5s forwards;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid hsla(220, 20%, 25%, 0.3);
+      flex: 1;
+    }
+
+    /* Cursor clicks + Agregar button */
+    .scene-3 .cursor {
+      top: 300px;
+      left: 900px;
+      animation:
+        fadeIn 0.3s 9.8s forwards,
+        moveCursorToAdd 0.8s 10s forwards,
+        cursorClick 0.2s 10.6s forwards,
+        fadeOut 0.3s 10.8s forwards;
+    }
+
+    @keyframes moveCursorToAdd {
+      0% { top: 300px; left: 900px; }
+      100% { top: 145px; left: 1530px; }
+    }
+
+    /* Click ring on add button */
+    .scene-3 .click-ring-add {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #4d9de6;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 25;
+      top: 145px;
+      left: 1530px;
+      animation: clickRing 0.5s 10.6s forwards;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      opacity: 0;
+      animation: fadeIn 0.4s 11s forwards;
+    }
+
+    .modal {
+      background: #1e1e2e;
+      border: 1px solid hsla(220, 20%, 35%, 0.5);
+      border-radius: 12px;
+      width: 560px;
+      padding: 36px 40px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.4s 11.2s forwards;
+    }
+
+    .modal-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: hsla(0, 0%, 100%, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      background: #14142a;
+      border: 1px solid hsla(220, 20%, 30%, 0.6);
+      border-radius: 8px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    .form-input .typed-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #4d9de6;
+      width: 0;
+    }
+
+    .field-nombre .typed-text {
+      animation: typeText 0.5s 11.6s steps(14) forwards, blinkCaret 0.4s 11.6s step-end 2;
+      max-width: 135px;
+    }
+
+    .field-email .typed-text {
+      animation: typeText 0.6s 12.2s steps(22) forwards, blinkCaret 0.4s 12.2s step-end 3;
+      max-width: 210px;
+    }
+
+    .field-cargo .typed-text {
+      animation: typeText 0.6s 12.8s steps(22) forwards, blinkCaret 0.4s 12.8s step-end 2;
+      max-width: 200px;
+    }
+
+    .field-rol .typed-text {
+      animation: typeText 0.3s 13.4s steps(7) forwards, blinkCaret 0.4s 13.4s step-end 2;
+      max-width: 72px;
+    }
+
+    @keyframes typeText {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blinkCaret {
+      50% { border-color: transparent; }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-row .form-group { flex: 1; }
+
+    .modal-btn {
+      width: 100%;
+      padding: 13px;
+      background: #4d9de6;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 8px;
+      margin-top: 10px;
+      text-align: center;
+      opacity: 0.4;
+      animation: btnActivate 0.3s 13.8s forwards;
+    }
+
+    @keyframes btnActivate {
+      to { opacity: 1; }
+    }
+
+    /* Cursor clicks Crear in modal */
+    .scene-3 .cursor-modal {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      z-index: 30;
+      pointer-events: none;
+      opacity: 0;
+      top: 600px;
+      left: 960px;
+      animation:
+        fadeIn 0.3s 14s forwards,
+        cursorClick 0.2s 14.2s forwards,
+        fadeOut 0.2s 14.3s forwards;
+    }
+
+    .scene-3 .cursor-modal svg {
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    /* ============================================
+       SCENE 4: Key generated (15-18s)
+       ============================================ */
+    .scene-4 {
+      flex-direction: column;
+      gap: 28px;
+      animation: fadeIn 0.5s 15.2s forwards, fadeOut 0.5s 17.5s forwards;
+    }
+
+    .scene-4 .step-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: #4d9de6;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: fadeInUp 0.4s 15.4s forwards;
+    }
+
+    .success-card {
+      background: #16182a;
+      border: 1px solid hsla(160, 60%, 45%, 0.3);
+      border-radius: 14px;
+      padding: 44px 70px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.5s 15.6s forwards;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: hsla(160, 60%, 45%, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 36px;
+      color: #52b788;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: popIn 0.4s 15.9s forwards;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      70% { transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .success-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #52b788;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 24px;
+    }
+
+    .success-subtext {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 16px;
+      color: #8a8580;
+      margin-bottom: 24px;
+    }
+
+    .auth-key-box {
+      background: #0e1019;
+      border: 2px solid hsla(210, 80%, 55%, 0.3);
+      border-radius: 10px;
+      padding: 20px 36px;
+      display: inline-block;
+      opacity: 0;
+      animation: fadeInUp 0.4s 16.3s forwards;
+    }
+
+    .auth-key-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #8a8580;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .auth-key-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #4d9de6;
+      letter-spacing: 0.12em;
+    }
+
+    .auth-key-hint {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #8a8580;
+      margin-top: 18px;
+      opacity: 0;
+      animation: fadeIn 0.4s 16.8s forwards;
+    }
+
+    /* ============================================
+       SCENE 5: Done (18-20s)
+       ============================================ */
+    .scene-5 {
+      padding: 40px 80px;
+      flex-direction: column;
+      align-items: stretch;
+      animation: fadeIn 0.5s 18.2s forwards;
+    }
+
+    .scene-5 .done-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.5s 18.4s forwards;
+    }
+
+    .scene-5 .done-title .accent { color: #4d9de6; }
+
+    .scene-5 .exe-app {
+      opacity: 0;
+      animation: fadeInUp 0.5s 18.6s forwards;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid hsla(220, 20%, 25%, 0.3);
+      flex: 1;
+    }
+
+    .scene-5 .new-row {
+      opacity: 0;
+      animation: fadeInUp 0.4s 19s forwards;
+    }
+
+    .scene-5 .new-row td {
+      background: hsla(160, 60%, 45%, 0.06);
+    }
+
+    .scene-5 .final-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #52b788;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.06em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInUp 0.5s 19.3s forwards;
+    }
+
+    /* ============================================
+       TOAST NOTIFICATION
+       ============================================ */
+    .toast {
+      position: absolute;
+      top: 80px;
+      right: 30px;
+      background: #1e8e3e;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 25;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    .scene-5 .toast {
+      animation: toastIn 0.4s 18.8s forwards;
+    }
+
+    @keyframes toastIn {
+      0% { opacity: 0; transform: translateX(40px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ============================================
+       KEYFRAMES
+       ============================================ */
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       PLAY OVERLAY
+       ============================================ */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 20, 0.75);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .play-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #4d9de6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(77, 157, 230, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.08); }
+
+    .play-btn svg { margin-left: 8px; }
+
+    .play-label {
+      font-family: 'Oswald', sans-serif;
+      color: #e8e6e1;
+      font-size: 28px;
+      margin-top: 24px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .video-frame.paused * { animation-play-state: paused !important; }
+    .video-frame.paused .play-overlay { animation-play-state: running !important; }
+  </style>
+</head>
+<body>
+
+<div class="video-frame paused" id="video">
+  <div class="glow"></div>
+  <div class="progress"></div>
+
+  <!-- ===== SCENE 1: Title (0-3s) ===== -->
+  <div class="scene scene-1">
+    <h1>Como crear miembros<br>del equipo</h1>
+    <div class="subtitle">Standard Sales Manager</div>
+  </div>
+
+  <!-- ===== SCENE 2: Navigate to Equipo (3-9s) ===== -->
+  <div class="scene scene-2">
+    <div class="step-label">1. Haz click en 'Equipo' en la barra superior</div>
+    <div class="exe-app">
+      <!-- EXE Header -->
+      <div class="exe-header">
+        <div class="exe-logo">
+          <div class="exe-logo-icon">SSM</div>
+          <div class="exe-logo-text">
+            <span class="exe-logo-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-logo-desc">Sistema de Gestion de Cotizaciones</span>
+          </div>
+        </div>
+        <div class="exe-header-sep"></div>
+        <div class="exe-header-btn">&#9881; Configuracion</div>
+        <div class="exe-header-btn">Configurar Logos</div>
+        <div class="exe-header-btn equipo-btn">Equipo</div>
+        <div class="exe-header-btn">&#8635;</div>
+        <div class="exe-header-btn">Contactos</div>
+        <div class="exe-header-spacer"></div>
+        <div class="exe-header-btn primary-btn">+ Nueva Cotizacion</div>
+      </div>
+      <!-- EXE Body -->
+      <div class="exe-body">
+        <div class="team-card-area">
+          <div class="card">
+            <div class="card-title">Gestion de Equipo</div>
+            <table class="team-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Cargo</th>
+                  <th>Rol</th>
+                  <th>Clave de acceso</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name-cell">Rodrigo Torres</td>
+                  <td class="email-cell">rodrigo@torresvidal.cl</td>
+                  <td class="cargo-cell">Director Comercial</td>
+                  <td><span class="role-badge role-admin">Admin</span></td>
+                  <td class="key-cell">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</td>
+                  <td class="action-btns">
+                    <div class="action-btn">&#9998;</div>
+                    <div class="action-btn">&#128065;</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Click ring -->
+      <div class="click-ring"></div>
+    </div>
+    <!-- Cursor -->
+    <div class="cursor">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="#111" stroke-width="1"><path d="M5 3l14 9-6.5 1.5L10 20z"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== SCENE 3: Add new member (9-15s) ===== -->
+  <div class="scene scene-3">
+    <div class="step-label">2. Completa los datos y asigna un rol</div>
+    <div class="exe-app">
+      <!-- EXE Header -->
+      <div class="exe-header">
+        <div class="exe-logo">
+          <div class="exe-logo-icon">SSM</div>
+          <div class="exe-logo-text">
+            <span class="exe-logo-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-logo-desc">Sistema de Gestion de Cotizaciones</span>
+          </div>
+        </div>
+        <div class="exe-header-sep"></div>
+        <div class="exe-header-btn">&#9881; Configuracion</div>
+        <div class="exe-header-btn">Configurar Logos</div>
+        <div class="exe-header-btn active-btn">Equipo</div>
+        <div class="exe-header-btn">&#8635;</div>
+        <div class="exe-header-btn">Contactos</div>
+        <div class="exe-header-spacer"></div>
+        <div class="exe-header-btn primary-btn">+ Nueva Cotizacion</div>
+      </div>
+      <!-- EXE Body -->
+      <div class="exe-body">
+        <div class="card">
+          <div class="card-title">
+            Gestion de Equipo
+            <div class="btn-add-team"><span class="plus">+</span> Agregar Usuario</div>
+          </div>
+          <table class="team-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                <th>Rol</th>
+                <th>Clave de acceso</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="name-cell">Rodrigo Torres</td>
+                <td class="email-cell">rodrigo@torresvidal.cl</td>
+                <td class="cargo-cell">Director Comercial</td>
+                <td><span class="role-badge role-admin">Admin</span></td>
+                <td class="key-cell">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</td>
+                <td class="action-btns">
+                  <div class="action-btn">&#9998;</div>
+                  <div class="action-btn">&#128065;</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Modal -->
+        <div class="modal-overlay">
+          <div class="modal">
+            <div class="modal-title">Agregar nuevo usuario</div>
+            <div class="form-group field-nombre">
+              <label class="form-label">Nombre</label>
+              <div class="form-input"><span class="typed-text">Camila Fuentes</span></div>
+            </div>
+            <div class="form-group field-email">
+              <label class="form-label">Email</label>
+              <div class="form-input"><span class="typed-text">camila@torresvidal.cl</span></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group field-cargo">
+                <label class="form-label">Cargo</label>
+                <div class="form-input"><span class="typed-text">Ejecutiva de Ventas</span></div>
+              </div>
+              <div class="form-group field-rol">
+                <label class="form-label">Rol</label>
+                <div class="form-input"><span class="typed-text">Miembro</span></div>
+              </div>
+            </div>
+            <div class="modal-btn">Crear Usuario</div>
+          </div>
+        </div>
+      </div>
+      <!-- Click ring on add button -->
+      <div class="click-ring-add"></div>
+    </div>
+    <!-- Cursor for add button -->
+    <div class="cursor">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="#111" stroke-width="1"><path d="M5 3l14 9-6.5 1.5L10 20z"/></svg>
+    </div>
+    <!-- Cursor for modal submit -->
+    <div class="cursor-modal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="#111" stroke-width="1"><path d="M5 3l14 9-6.5 1.5L10 20z"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== SCENE 4: Key generated (15-18s) ===== -->
+  <div class="scene scene-4">
+    <div class="step-label">3. Se genera una clave de acceso unica</div>
+    <div class="success-card">
+      <div class="success-icon">&#10003;</div>
+      <div class="success-text">Usuario creado exitosamente</div>
+      <div class="success-subtext">Camila Fuentes fue agregada al equipo como Miembro</div>
+      <div class="auth-key-box">
+        <div class="auth-key-label">Clave de acceso</div>
+        <div class="auth-key-value">SSM-7K3F-9M2P</div>
+      </div>
+      <div class="auth-key-hint">Comparte esta clave con el nuevo miembro para que pueda ingresar</div>
+    </div>
+  </div>
+
+  <!-- ===== SCENE 5: Done (18-20s) ===== -->
+  <div class="scene scene-5">
+    <div class="done-title"><span class="accent">&#161;</span>Listo<span class="accent">!</span> Tu equipo puede empezar a cotizar</div>
+    <div class="exe-app">
+      <!-- EXE Header -->
+      <div class="exe-header">
+        <div class="exe-logo">
+          <div class="exe-logo-icon">SSM</div>
+          <div class="exe-logo-text">
+            <span class="exe-logo-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-logo-desc">Sistema de Gestion de Cotizaciones</span>
+          </div>
+        </div>
+        <div class="exe-header-sep"></div>
+        <div class="exe-header-btn">&#9881; Configuracion</div>
+        <div class="exe-header-btn">Configurar Logos</div>
+        <div class="exe-header-btn active-btn">Equipo</div>
+        <div class="exe-header-btn">&#8635;</div>
+        <div class="exe-header-btn">Contactos</div>
+        <div class="exe-header-spacer"></div>
+        <div class="exe-header-btn primary-btn">+ Nueva Cotizacion</div>
+      </div>
+      <!-- EXE Body -->
+      <div class="exe-body">
+        <div class="card">
+          <div class="card-title">
+            Gestion de Equipo
+            <div class="btn-add-team"><span class="plus">+</span> Agregar Usuario</div>
+          </div>
+          <table class="team-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                <th>Rol</th>
+                <th>Clave de acceso</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="name-cell">Rodrigo Torres</td>
+                <td class="email-cell">rodrigo@torresvidal.cl</td>
+                <td class="cargo-cell">Director Comercial</td>
+                <td><span class="role-badge role-admin">Admin</span></td>
+                <td class="key-cell">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</td>
+                <td class="action-btns">
+                  <div class="action-btn">&#9998;</div>
+                  <div class="action-btn">&#128065;</div>
+                </td>
+              </tr>
+              <tr class="new-row">
+                <td class="name-cell">Camila Fuentes</td>
+                <td class="email-cell">camila@torresvidal.cl</td>
+                <td class="cargo-cell">Ejecutiva de Ventas</td>
+                <td><span class="role-badge role-miembro">Miembro</span></td>
+                <td class="key-cell">SSM-7K3F-9M2P</td>
+                <td class="action-btns">
+                  <div class="action-btn">&#9998;</div>
+                  <div class="action-btn">&#128065;</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Toast -->
+        <div class="toast">&#10003; Usuario creado exitosamente</div>
+      </div>
+    </div>
+    <div class="final-text">Tu equipo puede empezar a cotizar</div>
+  </div>
+
+  <!-- Play Overlay -->
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-btn">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="play-label">Reproducir &middot; 20s</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    const video = document.getElementById('video');
+    this.classList.add('hidden');
+    video.classList.remove('paused');
+    const clone = video.cloneNode(true);
+    clone.classList.remove('paused');
+    clone.querySelector('.play-overlay').classList.add('hidden');
+    video.parentNode.replaceChild(clone, video);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial 1 — Instalacion y Configuracion SSM (25s)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    /* ================================================================
+       16:9 FRAME
+       ================================================================ */
+    .video-frame {
+      width: 1920px;
+      height: 1080px;
+      transform: scale(0.52);
+      transform-origin: center center;
+      background: #0a0c14;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .video-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(220, 15%, 20%, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(220, 15%, 20%, 0.1) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+    }
+
+    .glow {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, hsla(210, 80%, 55%, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ================================================================
+       CLICK-TO-PLAY OVERLAY
+       ================================================================ */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 12, 20, 0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.5s;
+    }
+
+    .play-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .play-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4d9de6, #52b788);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 60px rgba(77, 157, 230, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .play-overlay:hover .play-btn {
+      transform: scale(1.08);
+      box-shadow: 0 0 80px rgba(77, 157, 230, 0.5);
+    }
+
+    .play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 40px solid #fff;
+      border-top: 24px solid transparent;
+      border-bottom: 24px solid transparent;
+      margin-left: 8px;
+    }
+
+    .play-label {
+      margin-top: 24px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      color: #8a8580;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       PROGRESS BAR
+       ================================================================ */
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4d9de6, #52b788);
+      z-index: 50;
+      width: 0%;
+    }
+
+    .video-frame.playing .progress {
+      animation: progressBar 25s linear forwards;
+    }
+
+    @keyframes progressBar { to { width: 100%; } }
+
+    /* ================================================================
+       SCENES BASE
+       ================================================================ */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 100px;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* ================================================================
+       COMMON ELEMENTS
+       ================================================================ */
+    .step-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #4d9de6;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .step-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* ================================================================
+       GENERIC KEYFRAMES
+       ================================================================ */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes clickRing {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+
+    /* Cursor */
+    .cursor {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      z-index: 40;
+      opacity: 0;
+    }
+
+    .cursor::before {
+      content: '';
+      display: block;
+      width: 0; height: 0;
+      border-left: 10px solid #fff;
+      border-right: 10px solid transparent;
+      border-bottom: 16px solid transparent;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    }
+
+    .click-ring {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid #4d9de6;
+      opacity: 0;
+      z-index: 39;
+    }
+
+    /* ================================================================
+       SCENE 1: TITLE CARD (0-3s)
+       ================================================================ */
+    .scene-1 {
+      flex-direction: column;
+    }
+
+    .video-frame.playing .scene-1 {
+      animation: fadeIn 0.6s 0.1s forwards, fadeOut 0.5s 2.5s forwards;
+    }
+
+    .scene-1 .title-main {
+      font-family: 'Oswald', sans-serif;
+      font-size: 78px;
+      font-weight: 700;
+      color: #e8e6e1;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      opacity: 0;
+    }
+
+    .video-frame.playing .scene-1 .title-main {
+      animation: fadeInUp 0.6s 0.3s forwards;
+    }
+
+    .scene-1 .title-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #4d9de6;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.15em;
+      margin-top: 20px;
+      opacity: 0;
+    }
+
+    .video-frame.playing .scene-1 .title-sub {
+      animation: fadeInUp 0.5s 0.9s forwards;
+    }
+
+    .scene-1 .title-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, hsla(210, 80%, 55%, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ================================================================
+       SCENE 2: DOWNLOAD & INSTALL (3-9s)
+       ================================================================ */
+    .scene-2 {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .video-frame.playing .scene-2 {
+      animation: fadeIn 0.5s 3.2s forwards, fadeOut 0.5s 8.5s forwards;
+    }
+
+    .scene-2 .step-header {
+      opacity: 0;
+      text-align: center;
+    }
+
+    .video-frame.playing .scene-2 .step-header {
+      animation: fadeInUp 0.4s 3.4s forwards;
+    }
+
+    /* Browser mockup */
+    .browser-window {
+      width: 900px;
+      background: #0d0f18;
+      border-radius: 14px;
+      border: 1px solid hsla(220, 15%, 25%, 0.5);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      opacity: 0;
+    }
+
+    .video-frame.playing .browser-window {
+      animation: fadeInUp 0.5s 3.6s forwards;
+    }
+
+    .browser-titlebar {
+      height: 40px;
+      background: #1a1c28;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 7px;
+    }
+
+    .browser-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+    }
+    .browser-dot.red { background: #ff5f56; }
+    .browser-dot.yellow { background: #ffbd2e; }
+    .browser-dot.green { background: #27ca40; }
+
+    .browser-url {
+      margin-left: 14px;
+      background: hsla(220, 15%, 20%, 0.5);
+      border-radius: 6px;
+      padding: 5px 18px;
+      font-size: 14px;
+      color: #8a8580;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .browser-body {
+      padding: 40px 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .browser-body .site-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      color: #e8e6e1;
+      font-weight: 700;
+    }
+
+    .browser-body .site-desc {
+      font-size: 15px;
+      color: #8a8580;
+    }
+
+    .download-btn {
+      background: #4d9de6;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 14px 40px;
+      border-radius: 10px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .download-btn .dl-icon::before {
+      content: '\2193';
+      font-size: 20px;
+    }
+
+    /* Cursor for scene 2 */
+    .scene-2 .cursor {
+      top: 310px;
+      left: 550px;
+    }
+
+    .video-frame.playing .scene-2 .cursor {
+      animation: cursorMove2 1s 4.5s forwards, fadeIn 0.2s 4.5s forwards, fadeOut 0.2s 5.5s forwards;
+    }
+
+    @keyframes cursorMove2 {
+      0% { top: 360px; left: 550px; }
+      100% { top: 306px; left: 510px; }
+    }
+
+    .scene-2 .click-ring {
+      top: 306px;
+      left: 510px;
+    }
+
+    .video-frame.playing .scene-2 .click-ring {
+      animation: clickRing 0.5s 5.3s forwards;
+    }
+
+    /* Download progress bar area */
+    .download-progress-area {
+      width: 100%;
+      opacity: 0;
+    }
+
+    .video-frame.playing .download-progress-area {
+      animation: fadeIn 0.3s 5.6s forwards;
+    }
+
+    .dl-filename {
+      font-size: 13px;
+      color: #8a8580;
+      margin-bottom: 8px;
+    }
+
+    .dl-bar-track {
+      width: 100%;
+      height: 8px;
+      background: hsla(220, 15%, 20%, 0.5);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .dl-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4d9de6, #52b788);
+      border-radius: 4px;
+    }
+
+    .video-frame.playing .dl-bar-fill {
+      animation: dlProgress 1.5s 5.8s forwards;
+    }
+
+    @keyframes dlProgress {
+      to { width: 100%; }
+    }
+
+    /* Install wizard overlay */
+    .install-wizard {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      background: #f0f2f5;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      padding: 30px 36px;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .video-frame.playing .install-wizard {
+      animation: fadeIn 0.3s 7.0s forwards, fadeOut 0.3s 8.3s forwards;
+    }
+
+    .install-wizard .iw-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 14px;
+    }
+
+    .install-wizard .iw-text {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .install-bar-track {
+      width: 100%;
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .install-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #4d9de6;
+      border-radius: 5px;
+    }
+
+    .video-frame.playing .install-bar-fill {
+      animation: installProgress 1.0s 7.2s forwards;
+    }
+
+    @keyframes installProgress {
+      to { width: 100%; }
+    }
+
+    .install-wizard .iw-done {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #52b788;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+    }
+
+    .video-frame.playing .install-wizard .iw-done {
+      animation: fadeIn 0.3s 8.0s forwards;
+    }
+
+    .iw-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #52b788;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ================================================================
+       SCENE 3: COMPANY SETUP (9-16s)
+       ================================================================ */
+    .scene-3 {
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px 100px;
+    }
+
+    .video-frame.playing .scene-3 {
+      animation: fadeIn 0.5s 9.2s forwards, fadeOut 0.5s 15.5s forwards;
+    }
+
+    .scene-3 .step-header {
+      opacity: 0;
+      text-align: center;
+    }
+
+    .video-frame.playing .scene-3 .step-header {
+      animation: fadeInUp 0.4s 9.3s forwards;
+    }
+
+    /* EXE App mockup */
+    .exe-app {
+      width: 960px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      border: 1px solid hsla(220, 15%, 25%, 0.4);
+      opacity: 0;
+    }
+
+    .video-frame.playing .scene-3 .exe-app {
+      animation: fadeInUp 0.4s 9.5s forwards;
+    }
+
+    .exe-header {
+      height: 64px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+    }
+
+    .exe-logo {
+      width: 38px;
+      height: 38px;
+      background: #4d9de6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .exe-header-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exe-company {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #e8e6e1;
+    }
+
+    .exe-product {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      color: #8a8580;
+    }
+
+    .exe-header-btns {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .exe-btn {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1px solid hsla(220, 20%, 35%, 0.5);
+      background: transparent;
+      color: #bbb;
+    }
+
+    .exe-btn.primary {
+      background: #4d9de6;
+      color: #fff;
+      border-color: #4d9de6;
+      font-weight: 600;
+    }
+
+    .exe-btn.active {
+      background: hsla(210, 50%, 40%, 0.3);
+      border-color: #4d9de6;
+      color: #e8e6e1;
+    }
+
+    .exe-body {
+      background: #f0f2f5;
+      min-height: 400px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Config modal */
+    .config-modal {
+      width: 520px;
+      background: #1e1e2e;
+      border-radius: 12px;
+      border: 1px solid hsla(220, 20%, 35%, 0.5);
+      padding: 28px 32px;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #e8e6e1;
+      margin-bottom: 22px;
+      letter-spacing: 0.03em;
+    }
+
+    .form-row {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #8a8580;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #14142a;
+      border: 1px solid hsla(220, 20%, 30%, 0.6);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #e8e6e1;
+      position: relative;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .form-input .typed-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      border-right: 2px solid #4d9de6;
+    }
+
+    /* Typewriter animations for each field */
+    .video-frame.playing .field-empresa .typed-text {
+      animation: typeEmpresa 1.0s 10.2s steps(19) forwards, caretBlink 0.5s 10.2s step-end 4;
+    }
+    @keyframes typeEmpresa { to { width: 170px; } }
+
+    .video-frame.playing .field-rut .typed-text {
+      animation: typeRut 0.7s 11.3s steps(12) forwards, caretBlink 0.5s 11.3s step-end 3;
+    }
+    @keyframes typeRut { to { width: 115px; } }
+
+    .video-frame.playing .field-dir .typed-text {
+      animation: typeDir 1.0s 12.1s steps(28) forwards, caretBlink 0.5s 12.1s step-end 4;
+    }
+    @keyframes typeDir { to { width: 265px; } }
+
+    .video-frame.playing .field-tel .typed-text {
+      animation: typeTel 0.7s 13.2s steps(17) forwards, caretBlink 0.5s 13.2s step-end 3;
+    }
+    @keyframes typeTel { to { width: 155px; } }
+
+    .video-frame.playing .field-email .typed-text {
+      animation: typeEmail 0.8s 14.0s steps(22) forwards, caretBlink 0.5s 14.0s step-end 3;
+    }
+    @keyframes typeEmail { to { width: 200px; } }
+
+    @keyframes caretBlink {
+      50% { border-color: transparent; }
+    }
+
+    /* Guardar button */
+    .btn-guardar {
+      margin-top: 18px;
+      background: hsla(210, 50%, 40%, 0.3);
+      color: #8a8580;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 36px;
+      border-radius: 8px;
+      border: 1px solid hsla(220, 20%, 30%, 0.6);
+      text-align: center;
+      width: 100%;
+      transition: none;
+    }
+
+    .video-frame.playing .btn-guardar {
+      animation: activateBtn 0.3s 14.9s forwards;
+    }
+
+    @keyframes activateBtn {
+      to {
+        background: #4d9de6;
+        color: #fff;
+        border-color: #4d9de6;
+      }
+    }
+
+    /* ================================================================
+       SCENE 4: CONFIGURE LOGO (16-21s)
+       ================================================================ */
+    .scene-4 {
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px 100px;
+    }
+
+    .video-frame.playing .scene-4 {
+      animation: fadeIn 0.5s 16.2s forwards, fadeOut 0.5s 20.5s forwards;
+    }
+
+    .scene-4 .step-header {
+      opacity: 0;
+      text-align: center;
+    }
+
+    .video-frame.playing .scene-4 .step-header {
+      animation: fadeInUp 0.4s 16.3s forwards;
+    }
+
+    .video-frame.playing .scene-4 .exe-app {
+      animation: fadeInUp 0.4s 16.5s forwards;
+    }
+
+    .logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 30px;
+    }
+
+    .logo-section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      color: #1a1a2e;
+      font-weight: 700;
+    }
+
+    .logo-slots {
+      display: flex;
+      gap: 40px;
+    }
+
+    .logo-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-slot-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .logo-placeholder {
+      width: 180px;
+      height: 120px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fafafa;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-placeholder .placeholder-text {
+      font-size: 13px;
+      color: #bbb;
+    }
+
+    /* Logo SVG that appears */
+    .logo-preview {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      opacity: 0;
+    }
+
+    .video-frame.playing .logo-slot-1 .logo-preview {
+      animation: fadeIn 0.3s 18.5s forwards;
+    }
+
+    .logo-graphic {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-graphic .lg-shape {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4d9de6, #52b788);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .logo-graphic .lg-text {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1a1a2e;
+    }
+
+    .select-file-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 7px 18px;
+      border-radius: 6px;
+      background: #4d9de6;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+    }
+
+    /* Cursor for scene 4 */
+    .scene-4 .cursor {
+      top: 520px;
+      left: 350px;
+    }
+
+    .video-frame.playing .scene-4 .cursor {
+      animation: fadeIn 0.2s 17.5s forwards, cursorMove4 0.8s 17.5s forwards, fadeOut 0.2s 18.5s forwards;
+    }
+
+    @keyframes cursorMove4 {
+      0% { top: 560px; left: 360px; }
+      100% { top: 510px; left: 350px; }
+    }
+
+    .scene-4 .click-ring {
+      top: 510px;
+      left: 350px;
+    }
+
+    .video-frame.playing .scene-4 .click-ring {
+      animation: clickRing 0.5s 18.2s forwards;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background: #1e1e2e;
+      border: 1px solid #52b788;
+      border-radius: 10px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      z-index: 20;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .video-frame.playing .scene-4 .toast {
+      animation: fadeInUp 0.3s 19.0s forwards, fadeOut 0.3s 20.2s forwards;
+    }
+
+    .toast-icon {
+      width: 24px;
+      height: 24px;
+      background: #52b788;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .toast-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #e8e6e1;
+    }
+
+    /* ================================================================
+       SCENE 5: READY (21-25s)
+       ================================================================ */
+    .scene-5 {
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px 100px;
+    }
+
+    .video-frame.playing .scene-5 {
+      animation: fadeIn 0.5s 21.2s forwards;
+    }
+
+    .scene-5 .step-header {
+      opacity: 0;
+      text-align: center;
+    }
+
+    .video-frame.playing .scene-5 .step-header {
+      animation: fadeInUp 0.4s 21.3s forwards;
+    }
+
+    .video-frame.playing .scene-5 .exe-app {
+      animation: fadeInUp 0.4s 21.5s forwards;
+    }
+
+    .exe-body-dashboard {
+      background: #f0f2f5;
+      min-height: 400px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dash-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .dash-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .dash-card .dc-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .dash-card .dc-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .dash-center-msg {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .dash-check {
+      width: 64px;
+      height: 64px;
+      background: #52b788;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 32px;
+      font-weight: 700;
+      opacity: 0;
+    }
+
+    .video-frame.playing .dash-check {
+      animation: popIn 0.5s 22.2s forwards;
+    }
+
+    .dash-msg-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      color: #1a1a2e;
+      font-weight: 700;
+      opacity: 0;
+    }
+
+    .video-frame.playing .dash-msg-title {
+      animation: fadeInUp 0.4s 22.6s forwards;
+    }
+
+    .dash-msg-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #888;
+      opacity: 0;
+    }
+
+    .video-frame.playing .dash-msg-sub {
+      animation: fadeInUp 0.4s 23.0s forwards;
+    }
+
+    /* Dashboard header with logo */
+    .exe-header-logo-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #4d9de6, #52b788);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #fff;
+      margin-right: -6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-frame" id="videoFrame">
+    <div class="glow"></div>
+    <div class="progress"></div>
+
+    <!-- ====== CLICK TO PLAY OVERLAY ====== -->
+    <div class="play-overlay" id="playOverlay">
+      <div class="play-btn"></div>
+      <div class="play-label">Click para reproducir</div>
+    </div>
+
+    <!-- ====== SCENE 1: TITLE CARD (0-3s) ====== -->
+    <div class="scene scene-1">
+      <div class="title-glow"></div>
+      <div class="title-main">Instalacion y<br>Configuracion</div>
+      <div class="title-sub">Configura tu software en minutos</div>
+    </div>
+
+    <!-- ====== SCENE 2: DOWNLOAD & INSTALL (3-9s) ====== -->
+    <div class="scene scene-2">
+      <div class="step-header">
+        <div class="step-label">Paso 1</div>
+        <div class="step-title">Descarga e Instala</div>
+      </div>
+      <div class="browser-window">
+        <div class="browser-titlebar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <span class="browser-url">stdsalesmanager.com</span>
+        </div>
+        <div class="browser-body">
+          <div class="site-title">Standard Sales Manager</div>
+          <div class="site-desc">Software de cotizaciones para tu empresa</div>
+          <div class="download-btn">
+            <span class="dl-icon"></span>
+            Descargar para Windows
+          </div>
+          <div class="download-progress-area">
+            <div class="dl-filename">SSM-Installer.exe &mdash; 85 MB</div>
+            <div class="dl-bar-track">
+              <div class="dl-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Cursor -->
+        <div class="cursor"></div>
+        <div class="click-ring"></div>
+      </div>
+      <!-- Install wizard -->
+      <div class="install-wizard">
+        <div class="iw-title">Instalando Standard Sales Manager...</div>
+        <div class="install-bar-track">
+          <div class="install-bar-fill"></div>
+        </div>
+        <div class="iw-done">
+          <span class="iw-check">&#10003;</span>
+          Instalacion completada
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== SCENE 3: COMPANY SETUP (9-16s) ====== -->
+    <div class="scene scene-3">
+      <div class="step-header">
+        <div class="step-label">Paso 2</div>
+        <div class="step-title">Configura tu Empresa</div>
+      </div>
+      <div class="exe-app">
+        <div class="exe-header">
+          <div class="exe-logo">S$</div>
+          <div class="exe-header-info">
+            <span class="exe-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-product">Standard Sales Manager</span>
+          </div>
+          <div class="exe-header-btns">
+            <div class="exe-btn active">Configuracion</div>
+            <div class="exe-btn">Configurar Logos</div>
+            <div class="exe-btn">Equipo</div>
+            <div class="exe-btn">Contactos</div>
+            <div class="exe-btn primary">+ Nueva Cotizacion</div>
+          </div>
+        </div>
+        <div class="exe-body">
+          <div class="config-modal">
+            <div class="modal-title">Configuracion de Empresa</div>
+            <div class="form-row">
+              <label class="form-label">Nombre Empresa</label>
+              <div class="form-input field-empresa">
+                <span class="typed-text">Torres &amp; Vidal SpA</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="form-label">RUT</label>
+              <div class="form-input field-rut">
+                <span class="typed-text">76.543.210-K</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Direccion</label>
+              <div class="form-input field-dir">
+                <span class="typed-text">Av. Las Condes 9450, Of. 301</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Telefono</label>
+              <div class="form-input field-tel">
+                <span class="typed-text">+56 2 2345 6789</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Email</label>
+              <div class="form-input field-email">
+                <span class="typed-text">contacto@torresvidal.cl</span>
+              </div>
+            </div>
+            <div class="btn-guardar">Guardar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== SCENE 4: CONFIGURE LOGO (16-21s) ====== -->
+    <div class="scene scene-4">
+      <div class="step-header">
+        <div class="step-label">Paso 3</div>
+        <div class="step-title">Personaliza tu Logo</div>
+      </div>
+      <div class="exe-app">
+        <div class="exe-header">
+          <div class="exe-logo">S$</div>
+          <div class="exe-header-info">
+            <span class="exe-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-product">Standard Sales Manager</span>
+          </div>
+          <div class="exe-header-btns">
+            <div class="exe-btn">Configuracion</div>
+            <div class="exe-btn active">Configurar Logos</div>
+            <div class="exe-btn">Equipo</div>
+            <div class="exe-btn">Contactos</div>
+            <div class="exe-btn primary">+ Nueva Cotizacion</div>
+          </div>
+        </div>
+        <div class="exe-body">
+          <div class="logo-section">
+            <div class="logo-section-title">Configurar Logos</div>
+            <div class="logo-slots">
+              <div class="logo-slot logo-slot-1">
+                <span class="logo-slot-label">Logo 1</span>
+                <div class="logo-placeholder">
+                  <span class="placeholder-text">Sin logo</span>
+                  <div class="logo-preview">
+                    <div class="logo-graphic">
+                      <div class="lg-shape">T&V</div>
+                      <span class="lg-text">Torres &amp; Vidal</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="select-file-btn">Seleccionar archivo</div>
+              </div>
+              <div class="logo-slot">
+                <span class="logo-slot-label">Logo 2</span>
+                <div class="logo-placeholder">
+                  <span class="placeholder-text">Sin logo</span>
+                </div>
+                <div class="select-file-btn">Seleccionar archivo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Cursor -->
+        <div class="cursor"></div>
+        <div class="click-ring"></div>
+      </div>
+      <!-- Toast -->
+      <div class="toast">
+        <div class="toast-icon">&#10003;</div>
+        <span class="toast-text">Logo guardado correctamente</span>
+      </div>
+    </div>
+
+    <!-- ====== SCENE 5: READY (21-25s) ====== -->
+    <div class="scene scene-5">
+      <div class="step-header">
+        <div class="step-label" style="color: #52b788;">Completado</div>
+        <div class="step-title">&#161;Listo!</div>
+      </div>
+      <div class="exe-app">
+        <div class="exe-header">
+          <div class="exe-header-logo-img">T&V</div>
+          <div class="exe-logo">S$</div>
+          <div class="exe-header-info">
+            <span class="exe-company">Torres &amp; Vidal SpA</span>
+            <span class="exe-product">Standard Sales Manager</span>
+          </div>
+          <div class="exe-header-btns">
+            <div class="exe-btn">Configuracion</div>
+            <div class="exe-btn">Configurar Logos</div>
+            <div class="exe-btn">Equipo</div>
+            <div class="exe-btn">Contactos</div>
+            <div class="exe-btn primary">+ Nueva Cotizacion</div>
+          </div>
+        </div>
+        <div class="exe-body-dashboard">
+          <div class="dash-stats">
+            <div class="dash-card">
+              <div class="dc-num">0</div>
+              <div class="dc-label">Total Cotizaciones</div>
+            </div>
+            <div class="dash-card">
+              <div class="dc-num">0</div>
+              <div class="dc-label">Generadas</div>
+            </div>
+            <div class="dash-card">
+              <div class="dc-num">0</div>
+              <div class="dc-label">Pendientes</div>
+            </div>
+            <div class="dash-card">
+              <div class="dc-num">0</div>
+              <div class="dc-label">Este Mes</div>
+            </div>
+          </div>
+          <div class="dash-center-msg">
+            <div class="dash-check">&#10003;</div>
+            <div class="dash-msg-title">Tu software esta configurado</div>
+            <div class="dash-msg-sub">Comienza creando tu primera cotizacion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('playOverlay').addEventListener('click', function() {
+      this.classList.add('hidden');
+      document.getElementById('videoFrame').classList.add('playing');
+    });
+  </script>
+</body>
+</html>
